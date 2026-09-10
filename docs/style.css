@@ -291,6 +291,56 @@ footer a:hover {
     text-align: center;
 }
 
+.letter .table-wrap {
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+}
+
+.letter table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.letter th,
+.letter td {
+    border: 1px solid #e0e0e0;
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.letter th {
+    background: #f9f9f9;
+    font-weight: 600;
+}
+
+.letter .toc {
+    background: #f9f9f9;
+    border-radius: 0.5rem;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.letter .toc h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.letter .toc ul {
+    margin-bottom: 0;
+    columns: 2;
+}
+
+.letter .toc a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.letter .toc a:hover {
+    text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .navbar .container {
@@ -333,5 +383,9 @@ footer a:hover {
     .letter {
         font-size: 1.05rem;
         padding: 2rem 20px 3rem;
+    }
+
+    .letter .toc ul {
+        columns: 1;
     }
 }
