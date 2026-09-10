@@ -8,393 +8,11 @@ html {
     color-scheme: light;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: #fff;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Navigation */
-.navbar {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #0066cc;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-.nav-links a:hover {
-    color: #0066cc;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 6rem 0;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background: #0066cc;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #0052a3;
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background: white;
-    color: #0066cc;
-    margin-left: 1rem;
-}
-
-.btn-secondary:hover {
-    background: #f0f0f0;
-}
-
-.btn-large {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-}
-
-.cta-buttons {
-    margin-top: 2rem;
-}
-
-/* Sections */
-.why-section,
-.what-section,
-.start-section {
-    padding: 4rem 0;
-    border-bottom: 1px solid #eee;
-    background: #fff;
-}
-
-.why-section h2,
-.what-section h2,
-.start-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-/* Three Column Layout */
-.three-column {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.column {
-    padding: 2rem;
-    background: #f9f9f9;
-    border-radius: 0.5rem;
-}
-
-.column h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-
-/* Features List */
-.features {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.features li {
-    padding: 1.5rem;
-    background: #f9f9f9;
-    border-radius: 0.5rem;
-}
-
-/* Steps */
-.steps {
-    background: #f9f9f9;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    margin: 2rem 0;
-    list-style: decimal-leading-zero;
-    list-style-position: inside;
-}
-
-.steps li {
-    margin: 1rem 0;
-    font-size: 1.1rem;
-}
-
-.start-section {
-    text-align: center;
-}
-
-.start-section .steps {
-    text-align: left;
-}
-
-.start-section .btn-primary {
-    margin-top: 1rem;
-}
-
-/* Footer */
-footer {
-    background: #333;
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-}
-
-footer a {
-    color: #7ea8e0;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Letter / long-form article pages */
-.letter-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 4rem 0 3rem;
-    text-align: center;
-}
-
-.letter-header .back-link {
-    display: inline-block;
-    color: white;
-    opacity: 0.85;
-    text-decoration: none;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-}
-
-.letter-header .back-link:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
-.letter-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.letter-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-.letter {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 3rem 20px 5rem;
-    font-size: 1.15rem;
-    line-height: 1.75;
-    color: #222;
-}
-
-.letter h2 {
-    font-size: 1.5rem;
-    margin: 2.5rem 0 1rem;
-    color: #333;
-}
-
-.letter p {
-    margin-bottom: 1.25rem;
-}
-
-.letter hr {
-    border: none;
-    border-top: 1px solid #eee;
-    margin: 2.5rem 0;
-}
-
-.letter ul {
-    margin: 0 0 1.25rem 1.5rem;
-}
-
-.letter li {
-    margin-bottom: 0.5rem;
-}
-
-.letter .signature {
-    margin-top: 3rem;
-    font-style: italic;
-    color: #666;
-}
-
-.letter .cta {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #eee;
-    text-align: center;
-}
-
-.letter .table-wrap {
-    overflow-x: auto;
-    margin: 0 0 1.5rem;
-}
-
-.letter table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 1rem;
-}
-
-.letter th,
-.letter td {
-    border: 1px solid #e0e0e0;
-    padding: 0.6rem 0.9rem;
-    text-align: left;
-    vertical-align: top;
-}
-
-.letter th {
-    background: #f9f9f9;
-    font-weight: 600;
-}
-
-.letter .toc {
-    background: #f9f9f9;
-    border-radius: 0.5rem;
-    padding: 1.5rem 1.75rem;
-    margin-bottom: 2.5rem;
-}
-
-.letter .toc h2 {
-    margin-top: 0;
-    font-size: 1.1rem;
-}
-
-.letter .toc ul {
-    margin-bottom: 0;
-    columns: 2;
-}
-
-.letter .toc a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-.letter .toc a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .hero {
-        padding: 4rem 0;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-    }
-
-    .why-section h2,
-    .what-section h2,
-    .start-section h2 {
-        font-size: 1.8rem;
-    }
-
-    .cta-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .btn-secondary {
-        margin-left: 0;
-    }
-
-    .letter-header h1 {
-        font-size: 1.8rem;
-    }
-
-    .letter {
-        font-size: 1.05rem;
-        padding: 2rem 20px 3rem;
-    }
-
-    .letter .toc ul {
-        columns: 1;
-    }
-}
 
 /* ==========================================================================
-   Homepage redesign ("Broadsheet") — scoped entirely under .bs-page so it
-   cannot affect the FAQ or Philosophy pages, which still use the rules
-   above. Tokens are defined on :root (harmless outside .bs-page since
-   nothing else references them), everything else is scoped.
+   Site-wide design system ("Broadsheet"). Every page shares this — all
+   markup carries a .bs-page body class, and every rule below is scoped
+   under it.
    ========================================================================== */
 
 :root {
@@ -679,8 +297,140 @@ footer a:hover {
     color: var(--color-accent-700);
 }
 
+/* Long-form article pages (FAQ, Philosophy) */
+.bs-page .article-header {
+    padding: 56px 0 8px;
+}
+
+.bs-page .article-header .back-link {
+    font-size: 14px;
+    color: var(--color-accent-700);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.bs-page .article-header .back-link:hover {
+    color: var(--color-accent);
+}
+
+.bs-page .article-header h1 {
+    font-size: clamp(30px, 4.5vw, 46px);
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+    max-width: 20ch;
+}
+
+.bs-page .article-header p {
+    font-size: 16px;
+    color: color-mix(in srgb, var(--color-text) 78%, transparent);
+    margin: 0;
+}
+
+.bs-page .article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 0 80px;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.bs-page .article h2 {
+    font-size: 22px;
+    margin: 40px 0 12px;
+    letter-spacing: -0.01em;
+}
+
+.bs-page .article p {
+    margin: 0 0 16px;
+    color: color-mix(in srgb, var(--color-text) 88%, transparent);
+}
+
+.bs-page .article ul {
+    margin: 0 0 16px 20px;
+}
+
+.bs-page .article li {
+    margin-bottom: 8px;
+}
+
+.bs-page .article hr {
+    border: none;
+    border-top: 1px solid var(--color-divider);
+    margin: 32px 0;
+}
+
+.bs-page .article .signature {
+    margin-top: 32px;
+    font-style: italic;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.bs-page .article .cta {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-divider);
+    text-align: center;
+}
+
+.bs-page .article .toc {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+}
+
+.bs-page .article .toc h2 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+.bs-page .article .toc ul {
+    margin: 0;
+    columns: 2;
+    list-style: none;
+    padding: 0;
+}
+
+.bs-page .article .toc li {
+    margin-bottom: 6px;
+    break-inside: avoid;
+}
+
+.bs-page .article .toc a {
+    font-size: 14px;
+}
+
+.bs-page .article table {
+    width: 100%;
+}
+
+.bs-page .article .steps {
+    background: var(--color-surface);
+    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    margin: 20px 0;
+    list-style: decimal-leading-zero;
+    list-style-position: inside;
+}
+
+.bs-page .article .steps li {
+    margin: 10px 0;
+}
+
 @media (max-width: 768px) {
     .bs-page .nav {
         gap: 12px 16px;
+    }
+
+    .bs-page .article {
+        font-size: 15px;
+    }
+
+    .bs-page .article .toc ul {
+        columns: 1;
     }
 }
