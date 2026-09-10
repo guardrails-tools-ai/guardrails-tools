@@ -1,6 +1,6 @@
 # AI Governance Policy — [Company Name]
 
-**Effective date:** [date] · **Owner:** [role, e.g. CTO / CISO] · **Review cycle:** [e.g. quarterly, or per `review_triggers`]
+**Effective date:** [date] · **Owner:** [specific role, e.g. CTO / CISO] · **Review cycle:** [e.g. quarterly, or per `review_triggers`]
 
 > This template is generated from the [Guardrails workflow](../workflow/00-intro.md). Fill in every `[bracketed]` field with output from your own Discovery, Risk Classification, Authority Definition, Control Identification, and Evidence Planning steps. Delete this note before distributing.
 
