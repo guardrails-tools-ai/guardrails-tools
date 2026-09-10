@@ -1,6 +1,6 @@
 # Introduction: Know. Control. Prove.
 
-Welcome to the Guardrails workflow — a 45-minute process that takes your company from "we have no idea what our AI governance looks like" to a written baseline policy, a control register, a prioritized gap list, and an evidence plan.
+Welcome to the Guardrails workflow — a 50-minute process that takes your company from "we have no idea what our AI governance looks like" to a written baseline policy, a control register, a prioritized gap list, and an evidence plan.
 
 ## Why this exists
 
@@ -47,7 +47,7 @@ You will assess these two dimensions separately for every use case. Neither one 
 
 ## What you'll walk through
 
-1. **[Discovery](01-discovery.md)** (5 min) — Inventory every AI system and use case, sanctioned or not.
+1. **[Discovery](01-discovery.md)** (10 min) — Inventory every AI system and use case, sanctioned or not, including AI embedded in software you already use.
 2. **[Risk Classification](02-risk-classification.md)** (10 min) — Rate the inherent risk of each use case, independent of authority.
 3. **[Authority Definition](03-authority-definition.md)** (10 min) — Decide what each use case is actually allowed to do, on the 0-6 ladder.
 4. **[Control Identification](04-control-identification.md)** (10 min) — Generate the controls that match each risk + authority combination.
@@ -62,6 +62,6 @@ Four artifacts, all built from the same underlying record for every use case:
 3. **Prioritized Control Gap Assessment** — what's missing, ranked by how much it should scare you.
 4. **Control Evidence & Validation Plan** — how you'll test each control and what "it's working" looks like.
 
-None of this requires a compliance team, a GRC platform, or a six-figure consulting engagement. It requires 45 minutes and honesty about what your company is actually doing with AI today.
+None of this requires a compliance team, a GRC platform, or a six-figure consulting engagement. It requires 50 minutes and honesty about what your company is actually doing with AI today.
 
 Start with [01 — Discovery](01-discovery.md).

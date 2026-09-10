@@ -1,45 +1,257 @@
 # 01 — Discovery
 
-**Time: 5 minutes** · **Goal: Find out what AI your company is actually using**
+**Time: 10 minutes** · **Goal: Find out where AI is actually operating in your organization**
 
-## Why this matters
+**Key insight:** AI is in more places than you think — often embedded in software that doesn't look like an "AI tool."
 
-You cannot govern what you haven't found. Most companies' first instinct is to list the AI tools IT purchased — a Claude Enterprise seat, a ChatGPT Team plan, GitHub Copilot licenses. That list is real, but it's incomplete in a way that matters: it says nothing about personal accounts, browser extensions, or the AI features quietly built into tools you already pay for.
+## You May Already Be Using AI in More Places Than You Think
 
-The recruiter who uploads fifty résumés to a personal ChatGPT account to screen candidates faster isn't circumventing a policy — there usually isn't one. She's just using the fastest tool available. That's a discovery gap, not a discipline problem, and it's exactly the kind of thing this step is built to surface.
+Before you can govern AI, you have to know where it is.
 
-Discovery isn't a one-time inventory you file away. It's the input every later step depends on — you can't classify the risk of a use case you don't know exists.
+Most companies think AI use means: ChatGPT, Claude, Copilot (the obvious tools).
 
-## The worksheet
+But AI is also embedded everywhere else:
 
-For **every AI system** your company touches — approved or not — capture:
+- Your CRM (Salesforce Einstein makes predictions and recommendations)
+- Your email and productivity suite (Microsoft Copilot in Teams, Gmail's smart reply)
+- Your development tools (GitHub Copilot, AWS CodeWhisperer)
+- Your HR software (Workday, Greenhouse AI for résumé screening)
+- Your customer support (Zendesk AI, ServiceNow)
+- Your internal applications (custom agents, RAG systems, API calls to Claude or OpenAI)
+- Your design software (Adobe Firefly, Figma plugins)
+- Your automation and workflow tools (Slack workflows, Zapier, internal scripts)
 
-- **Name / Provider / Model** — e.g., "Claude Enterprise / Anthropic / claude-opus-5"
-- **Who owns it?** — the department or person accountable for how it's used
-- **What's it used for?** — be specific; "productivity" is not an answer, "summarizing incoming contracts" is
-- **Where is it deployed?** — office network, remote/BYOD, embedded in a SaaS product, a CI pipeline, a support console
+### Common AI Products and Models
 
-Then categorize it:
+Here's a reference list. You may recognize some of these:
 
-- **Approved/Managed** — IT purchased it, someone owns it, usage is at least loosely governed
-- **Known/Unmanaged** — people use it, the company knows, but no one has set rules
-- **Prohibited** — the company has decided this should not be used, for this purpose
-- **Unknown/Discovery Required** — you suspect usage but need to investigate further (check expense reports, browser extension lists, SaaS access logs, and just ask department heads directly)
+| Product | Company | What It Is |
+|---------|---------|-----------|
+| ChatGPT | OpenAI | General-purpose AI assistant |
+| Claude | Anthropic | General-purpose AI assistant and agent platform |
+| Gemini | Google | AI assistant integrated across Google products |
+| Microsoft Copilot | Microsoft | AI assistants in Windows, Edge, Microsoft 365 |
+| GitHub Copilot | GitHub / Microsoft | AI-assisted code generation |
+| Grok | xAI | General-purpose AI assistant |
+| Meta AI | Meta | AI assistant across Meta products |
+| Perplexity | Perplexity | AI-powered research and search |
+| DeepSeek | DeepSeek | AI models and assistant platform |
+| Llama | Meta | Model family used to build other AI systems |
 
-Remember: one AI *system* usually maps to several *use cases*. List each one separately — you'll classify and authorize at the use-case level in later steps, not the system level.
+### An Important Distinction: Product, Model, and Company
 
-## Worked examples
+This matters because it changes how you inventory and govern AI.
 
-**1. The obvious one.** Claude Enterprise, provided by Anthropic, owned by the CTO's office. Two use cases surface immediately: General Counsel uses it for contract summarization, and Engineering uses it for code review assistance. Both get logged as **Approved/Managed** — but as two separate use-case rows, because they'll carry different risk and authority profiles.
+**Product** = The thing users interact with
+**Model** = The AI underlying it
+**Company** = Who built/owns it
 
-**2. The recruiter at 10am.** A personal ChatGPT account, provider OpenAI, "owned" by nobody in particular — Sales and Recruiting both admit to using it to screen résumés and draft outreach. This is **Known/Unmanaged**: everyone knows it happens, nobody has set a rule. It goes on the register anyway, because pretending it doesn't exist is worse than governing it badly.
+Examples:
 
-**3. The one nobody mentions until you ask directly.** GitHub Copilot, already licensed for the whole engineering org, embedded in every developer's IDE — including a repo that has read access to a secrets vault. Nobody thought to list it because "it's just autocomplete." It's **Approved/Managed** on paper, but the use case ("code generation with access to a repo holding production secrets") hasn't been separately risk-assessed. Flag it — Step 2 will catch what this really means.
+- ChatGPT (product) from OpenAI (company) uses OpenAI GPT models
+- Claude (product and common name for Anthropic's assistant) is built on Anthropic models
+- Microsoft Copilot (product) may use Microsoft and partner models depending on the service
+- Llama (Meta model family) is open source — other companies use it to build completely different applications
+- Salesforce Einstein (product) may use Salesforce models or partner models depending on the feature
 
-**4. The finance analyst at quarter-end.** An internal chatbot built on the OpenAI API, deployed inside the FP&A team's internal tools, used to "sense check" draft forecasts before they go to the board. It was built by a single analyst without IT's knowledge. This is **Unknown/Discovery Required** until this workshop — it surfaces here because someone finally asked Finance directly what they use.
+This matters to Guardrails because the question isn't "Do you use ChatGPT?"
 
-## How this feeds the output
+The question is: **"Where is AI operating, what model/service is behind it, what information can it access, and what authority does that particular implementation have?"**
 
-Every row you capture here becomes one entry in the **AI System & Use Case Register** — the first of the four Phase 1 outputs. In the underlying schema, each system becomes an `AI_SYSTEM` object, and each use case underneath it becomes a `USE_CASE` object with `name`, `owner`, and `purpose` populated. Nothing gets deleted at this stage, even the embarrassing entries — the goal of this step is completeness, not judgment. Judgment starts in Step 2.
+Same AI technology. Completely different governance outcomes.
+
+Example 1:
+- **System:** Microsoft 365 Copilot
+- **Underlying AI:** Microsoft and partner models
+- **Use Case:** Executive meeting summaries
+- **Data Access:** Email + Teams + SharePoint
+- **Authority:** Level 1 (Analyze)
+- **Risk:** High (confidential corporate data)
+
+Example 2:
+- **System:** ChatGPT
+- **Underlying AI:** OpenAI models
+- **Use Case:** Draft social media posts from public material
+- **Data Access:** Public information only
+- **Authority:** Level 2 (Recommend)
+- **Risk:** Low
+
+Same technology. Very different governance needs.
+
+## The Three-Category Inventory
+
+Most companies miss AI use because they ask the wrong question.
+
+Bad question: "Do we use ChatGPT?"
+Answer: "No, we use Microsoft."
+Reality: The company is using AI through CRM, email, Office, GitHub, and ChatGPT in departments IT doesn't track.
+
+Better approach: Ask three separate questions.
+
+### Category 1: Direct AI Tools
+
+Do employees use standalone AI assistants directly? These are products people consciously launch and interact with.
+
+- ChatGPT (personal account or enterprise)
+- Claude
+- Gemini
+- Copilot
+- Grok
+- Perplexity
+- Others
+
+Note: Include both company-approved instances and ones employees use on their own accounts. You'll find both.
+
+**Discovery Questions:**
+- Which teams use these tools?
+- For what purposes?
+- What information do they paste into them?
+- Are accounts personal or managed?
+- Do you have visibility into usage?
+
+### Category 2: AI Features in Business Applications
+
+Do your business applications (ones you already bought or use regularly) contain AI features?
+
+This is the category most companies miss.
+
+Applications to check:
+- **CRM:** Salesforce, HubSpot, Pipedrive, Zoho
+- **HR/Hiring:** Workday, Bamboo, Greenhouse, LinkedIn Recruiter
+- **Support:** Zendesk, Intercom, Freshdesk, ServiceNow
+- **Productivity:** Microsoft 365, Google Workspace, Slack, Notion, Asana
+- **Development:** GitHub, GitLab, AWS, Azure DevOps
+- **Finance:** NetSuite, SAP, Concur, QuickBooks
+- **Design:** Adobe, Figma, Sketch
+- **Email:** Gmail, Outlook, Mailchimp
+- **Data/Analytics:** Tableau, Looker, Power BI
+- **Legal/Compliance:** LawGeex, Kira, others
+
+**Discovery Questions:**
+- Which applications do you use?
+- Which of those applications have AI features enabled?
+- If you're not sure, check the vendor's product documentation
+- What data do those AI features access?
+- Who can see the AI's outputs?
+
+### Category 3: Internally Built Systems Using AI
+
+Do you have custom applications, agents, APIs, or automation that call AI models?
+
+Examples:
+- Internal chatbots
+- Autonomous agents
+- RAG systems (documents + AI analysis)
+- Workflow automation using API calls to Claude, OpenAI, etc.
+- Custom models or fine-tuned models
+- Internal tools calling AI APIs
+
+**Discovery Questions:**
+- Do you have any internal systems that call Claude, OpenAI, or other AI APIs?
+- Are there agents or automation running in production?
+- Do any of these access internal data?
+- Who built them? Who maintains them?
+- Are they documented anywhere?
+
+## The Worksheet: Where Is AI Operating?
+
+Use this worksheet to inventory your company's actual AI use.
+
+### Category 1: Direct AI Tools
+
+| Tool | Teams Using | Purpose | Data Sensitivity | Visibility |
+|------|-------------|---------|------------------|-----------|
+| ChatGPT | [List] | [Purpose] | [Public/Internal/Confidential] | [Managed/Personal/Unknown] |
+| Claude | [List] | [Purpose] | [Public/Internal/Confidential] | [Managed/Personal/Unknown] |
+| Other: [Name] | [List] | [Purpose] | [Public/Internal/Confidential] | [Managed/Personal/Unknown] |
+
+### Category 2: AI Features in Business Applications
+
+| Application | Vendor | AI Feature | Data Access | Owner |
+|------------|--------|-----------|-----------|-------|
+| Salesforce CRM | Salesforce | Einstein pipeline predictions | Customer records | Sales leadership |
+| Microsoft 365 | Microsoft | Copilot in Teams | Email, docs, calendar | All employees |
+| GitHub | GitHub/Microsoft | Copilot code suggestions | Proprietary code | Engineering |
+| Zendesk Support | Zendesk | Answer bot | Customer questions, KB | Support team |
+| Other: [Name] | [Vendor] | [Feature] | [Data] | [Owner] |
+
+### Category 3: Internally Built AI Systems
+
+| System | Purpose | Model/API Used | Data Access | Owner |
+|--------|---------|----------------|------------|-------|
+| Document analysis agent | Intake processing | Claude API | Internal contracts | Legal team |
+| Forecasting bot | Finance analysis | OpenAI API | Quarterly data | Finance |
+| Other: [Name] | [Purpose] | [Model] | [Data] | [Owner] |
+
+## What You're Looking For
+
+As you fill out this worksheet, you're building three things:
+
+1. **Visibility** — "We didn't know Finance was using this"
+2. **Scope** — "AI is in more places than we thought"
+3. **Starting Point** — "Now we know what we need to govern"
+
+You're not trying to be exhaustive. You're trying to be honest about where AI is actually operating.
+
+Many companies will discover:
+
+- More AI tools in use than they expected
+- More SaaS products with AI features enabled than they realized
+- Internal systems running on AI APIs that IT doesn't have on a list
+
+That's the whole point of this step.
+
+## Running Examples Across All Steps
+
+To help you see how this flows through the rest of the workflow, here are four AI systems that started in discovery:
+
+**Example 1: Legal**
+- **System:** Claude (direct tool)
+- **Use Case:** Contract analysis
+- **Data Access:** Confidential contracts
+- **Sensitivity:** Confidential/Privileged
+
+**Example 2: Finance**
+- **System:** ChatGPT (direct tool)
+- **Use Case:** Financial forecasting
+- **Data Access:** Quarterly financial data
+- **Sensitivity:** Confidential/Material non-public
+
+**Example 3: Operations**
+- **System:** Internal autonomous agent
+- **Use Case:** Sev-1 incident response
+- **Data Access:** Production infrastructure, logs
+- **Sensitivity:** Critical infrastructure
+
+**Example 4: Recruiting**
+- **System:** ChatGPT (personal account, not managed)
+- **Use Case:** Résumé screening
+- **Data Access:** Applicant information
+- **Sensitivity:** Confidential/regulated (GDPR, CCPA, etc.)
+
+Each of these will go through the full workflow. But they all started here: discovery. You'll see them again in [Risk Classification](02-risk-classification.md), [Authority Definition](03-authority-definition.md), [Control Identification](04-control-identification.md), and [Evidence Planning](05-evidence-planning.md).
+
+## Key Takeaway
+
+Before you can classify risk, define authority, or build controls, you have to know what you're actually using.
+
+And you won't find everything by asking "Do you use ChatGPT?"
+
+You have to ask:
+1. What direct AI tools are employees using?
+2. What AI features are in the applications you already own?
+3. What internal systems are running on AI models or APIs?
+
+Then you'll have an accurate picture.
+
+Then you can govern.
+
+## Next Step
+
+Once you've completed this inventory, move to **[02 — Risk Classification](02-risk-classification.md)**.
+
+You'll take each AI system from your discovery and ask: "If this goes wrong, how serious is it?"
+
+But first, you need to know what "this" is. So fill out the worksheet. Be thorough. Include things you're not sure about (mark them for follow-up). Then move forward.
 
 Next: [02 — Risk Classification](02-risk-classification.md)
