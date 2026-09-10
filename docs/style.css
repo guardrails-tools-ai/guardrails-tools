@@ -389,3 +389,298 @@ footer a:hover {
         columns: 1;
     }
 }
+
+/* ==========================================================================
+   Homepage redesign ("Broadsheet") — scoped entirely under .bs-page so it
+   cannot affect the FAQ or Philosophy pages, which still use the rules
+   above. Tokens are defined on :root (harmless outside .bs-page since
+   nothing else references them), everything else is scoped.
+   ========================================================================== */
+
+:root {
+    --color-bg: #f3f2f2;
+    --color-surface: #eae9e9;
+    --color-text: #201e1d;
+    --color-accent: #0088b0;
+    --color-accent-2: #d6006c;
+    --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+
+    --color-accent-600: #1186ac;
+    --color-accent-700: #006786;
+
+    --font-heading: "Source Serif 4", system-ui, sans-serif;
+    --font-heading-weight: 600;
+    --font-body: "Source Serif 4", system-ui, sans-serif;
+
+    --space-1: 5px;
+    --space-2: 10px;
+    --space-3: 15px;
+    --space-4: 20px;
+
+    --radius-md: 2px;
+}
+
+.bs-page {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.bs-page h1, .bs-page h2, .bs-page h3, .bs-page h4 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+}
+
+.bs-page a {
+    color: var(--color-accent-700);
+    text-underline-offset: 3px;
+}
+
+.bs-page a:hover {
+    color: var(--color-accent);
+}
+
+.bs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 72px) 40px;
+}
+
+/* Nav */
+.bs-page .nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 15px clamp(20px, 5vw, 72px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bs-page .nav-brand {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 18px;
+    margin-right: auto;
+    color: var(--color-text);
+}
+
+.bs-page .nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.bs-page .nav a:hover {
+    color: var(--color-accent);
+}
+
+/* Buttons */
+.bs-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--color-text);
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+}
+
+.bs-page .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.bs-page .btn-primary:hover {
+    background: var(--color-accent-600);
+    color: var(--color-bg);
+}
+
+.bs-page .btn-ghost {
+    color: var(--color-accent-700);
+    padding-inline: 5px;
+}
+
+.bs-page .btn-ghost:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+/* Status strip */
+.bs-page .hr-heavy {
+    height: 5px;
+    border: 0;
+    margin: 0;
+    border-top: 2px solid var(--color-text);
+    border-bottom: 1px solid var(--color-text);
+}
+
+.bs-page .hr {
+    height: 0;
+    border: 0;
+    border-top: 1px solid var(--color-text);
+    margin: 0;
+}
+
+.bs-page .status-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px 30px;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+.bs-page .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px 60px;
+    padding: 22px 0 4px;
+}
+
+.bs-page .goal-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0;
+    font-size: 15px;
+}
+
+.bs-page .goal-dots {
+    flex: 1;
+    border-bottom: 1px dotted color-mix(in srgb, var(--color-text) 45%, transparent);
+    margin-bottom: 5px;
+}
+
+.bs-page .goal-value {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.bs-page .eyebrow {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    margin: 0 0 12px;
+}
+
+/* Cards */
+.bs-page .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.bs-page .card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+}
+
+.bs-page .card-kicker {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+}
+
+.bs-page .card-title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 17px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.bs-page .card-body {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.8;
+    flex: 1;
+}
+
+/* Grids */
+.bs-page .kcp-grid,
+.bs-page .outputs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px 40px;
+}
+
+.bs-page .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px 60px;
+}
+
+/* Table */
+.bs-page .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.bs-page .table th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    padding: 10px;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.bs-page .table td {
+    padding: 10px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.bs-page .table tbody tr:hover {
+    background: color-mix(in srgb, var(--color-text) 4%, transparent);
+}
+
+/* Footer */
+.bs-page .bs-footer {
+    background: transparent;
+    text-align: left;
+    padding: 24px 0 8px;
+    border-top: 1px solid var(--color-divider);
+    font-size: 13px;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bs-page .bs-footer a {
+    color: var(--color-accent-700);
+}
+
+@media (max-width: 768px) {
+    .bs-page .nav {
+        gap: 12px 16px;
+    }
+}

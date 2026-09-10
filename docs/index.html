@@ -3,121 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardrails Tools - AI Governance Framework</title>
-    <meta name="description" content="Free, open-source AI governance framework. Take your company from no policy to written governance in 45 minutes.">
-    <meta name="keywords" content="AI governance, compliance, guardrails, policy, AI safety">
+    <title>Guardrails Tools — AI Governance Framework</title>
+    <meta name="description" content="Know what your AI can do. Control what it's allowed to do. Prove what it actually did. Free, open-source AI governance framework — 45-minute workflow, machine-readable policy.">
+    <meta name="keywords" content="AI governance, compliance, guardrails, policy, AI safety, authority ladder">
     <meta name="author" content="Guardrails Tools">
 
-    <meta property="og:title" content="Guardrails Tools - AI Governance for Every Company">
-    <meta property="og:description" content="Free, open-source framework for responsible AI deployment. 45-minute workflow, customizable policy, tool recommendations.">
+    <meta property="og:title" content="Guardrails Tools — Know. Control. Prove.">
+    <meta property="og:description" content="Your team is using Claude, ChatGPT, Gemini, or Grok. Without governance, one compromised connection, one tired engineer, one angry customer can break compliance or lose data. Guardrails makes it explicit.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://guardrails-tools.dev">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Guardrails Tools">
-    <meta name="twitter:description" content="AI Governance Framework - free and open source">
+    <meta name="twitter:description" content="Know what your AI can do. Control what it's allowed to do. Prove what it actually did.">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <h1 class="logo">Guardrails Tools</h1>
-            <ul class="nav-links">
-                <li><a href="https://github.com/guardrails-tools-ai/guardrails-tools">GitHub</a></li>
-                <li><a href="#why">Why</a></li>
-                <li><a href="#what">What's Included</a></li>
-                <li><a href="why-ai-needs-boundaries.html">Philosophy</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="#start">Get Started</a></li>
-            </ul>
-        </div>
+<body class="bs-page">
+    <nav class="nav">
+        <span class="nav-brand">Guardrails Tools</span>
+        <a href="#problem">Problem</a>
+        <a href="#ladder">Authority ladder</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#audience">Who it's for</a>
+        <a href="why-ai-needs-boundaries.html">Philosophy</a>
+        <a href="faq.html">FAQ</a>
+        <a class="btn btn-primary" href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener" style="margin-left:12px">View on GitHub</a>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <h1>AI Governance for Every Company</h1>
-            <p>Free, open-source framework for responsible AI deployment.</p>
-            <div class="cta-buttons">
-                <a href="https://github.com/guardrails-tools-ai/guardrails-tools" class="btn btn-primary">
-                    Get Started on GitHub →
-                </a>
-                <a href="#why" class="btn btn-secondary">
-                    Learn More
-                </a>
-            </div>
+    <div class="bs-container">
+
+    <header style="padding:76px 0 56px">
+        <h1 style="font-size:clamp(34px,5vw,58px);line-height:1.12;letter-spacing:-0.02em;margin:0">
+            <span style="display:block">Know what your AI can do.</span>
+            <span style="display:block">Control what it's allowed to do.</span>
+            <span style="display:block">Prove what it actually did.</span>
+        </h1>
+        <p style="font-size:17px;line-height:1.65;max-width:62ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);margin:28px 0 0">
+            Your team is using Claude, ChatGPT, Gemini, or Grok. Without governance, one compromised connection, one tired engineer, one angry customer can break compliance or lose data. Guardrails makes it explicit: what this AI can access, what it's allowed to do, and how we prove it followed the rules. 45-minute workflow. Machine-readable policy. Works for startups and enterprises. Free. Open source.
+        </p>
+        <div style="display:flex;gap:15px;flex-wrap:wrap;margin-top:28px">
+            <a class="btn btn-primary" href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn btn-ghost" href="#ladder">See the authority ladder</a>
         </div>
     </header>
 
-    <section id="why" class="why-section">
-        <div class="container">
-            <h2>Why This Matters</h2>
-            <div class="three-column">
-                <div class="column">
-                    <h3>🚨 The Problem</h3>
-                    <p>Companies are deploying Claude and ChatGPT without governance. One tired engineer at 3am can break everything.</p>
-                </div>
-                <div class="column">
-                    <h3>⚠️ The Risk</h3>
-                    <p>AI might execute production commands with escalated privileges. No audit trail. No clarity who did what. Catastrophic failures waiting to happen.</p>
-                </div>
-                <div class="column">
-                    <h3>✅ The Solution</h3>
-                    <p>Guardrails makes governance easy. 45-minute workflow. Customizable policy. Tool recommendations. Works for startups and enterprises.</p>
-                </div>
+    <section aria-label="Status" style="padding:20px 0 36px">
+        <hr class="hr-heavy" />
+        <p class="status-row">
+            <span>Status: Phase 1 — live</span>
+            <span>Launch: September 2026</span>
+            <span>Schema v1.0 — stable ontology</span>
+            <span>License: MIT</span>
+        </p>
+        <hr class="hr" style="margin:0" />
+        <div class="goals-grid">
+            <p class="goal-row"><span>GitHub stars, month one</span><span class="goal-dots"></span><span class="goal-value" style="color:var(--color-accent-700)">100+</span></p>
+            <p class="goal-row"><span>Website visitors, month one</span><span class="goal-dots"></span><span class="goal-value">500+</span></p>
+            <p class="goal-row"><span>Companies piloting</span><span class="goal-dots"></span><span class="goal-value">5–10</span></p>
+            <p class="goal-row"><span>GitHub issues, month one</span><span class="goal-dots"></span><span class="goal-value">5–10</span></p>
+        </div>
+    </section>
+
+    <section id="problem" style="padding:40px 0 8px">
+        <span class="eyebrow">The problem</span>
+        <h2 style="font-size:clamp(24px,3vw,32px);letter-spacing:-0.01em;margin:0 0 6px;max-width:38ch">AI authority is expanding faster than governance.</h2>
+        <p style="font-size:15.5px;line-height:1.6;max-width:62ch;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 28px">Six ways this is happening right now, inside companies that never decided to take these risks.</p>
+        <div class="card-grid">
+            <div class="card">
+                <span class="card-kicker">3:00 AM</span>
+                <h3 class="card-title">The DBA</h3>
+                <p class="card-body">Production database down. Panicked. Asks Claude to fix it. Claude has prod credentials. No guardrails. Database corrupted. Nobody knows: Claude did it? DBA did it? No audit trail.</p>
+            </div>
+            <div class="card">
+                <span class="card-kicker">10:00 AM</span>
+                <h3 class="card-title">The recruiter</h3>
+                <p class="card-body">Uploads 50 applicant résumés to ChatGPT to screen candidates. Personal ChatGPT account. No governance. Applicant data now on OpenAI servers. GDPR violation.</p>
+            </div>
+            <div class="card">
+                <span class="card-kicker">Quarter-end</span>
+                <h3 class="card-title">The finance analyst</h3>
+                <p class="card-body">Pastes unreleased financial projections into Claude to "sense check" the forecast. Quarter-end projections are material non-public information. Insider trading exposure. Regulator liability.</p>
+            </div>
+            <div class="card">
+                <span class="card-kicker">Support queue</span>
+                <h3 class="card-title">The support agent</h3>
+                <p class="card-body">Customer is furious. AI suggests an exception to company policy. Support agent accepts it. Now the company honored a policy exception. Customer expects it. Company liable.</p>
+            </div>
+            <div class="card">
+                <span class="card-kicker">Sev-1</span>
+                <h3 class="card-title">The autonomous ops agent</h3>
+                <p class="card-body">Deployed to handle Sev-1 incidents. Has prod access. Incident occurs. Agent attempts action outside its intended scope. Security controls didn't exist. System compromised.</p>
+            </div>
+            <div class="card">
+                <span class="card-kicker">Breach</span>
+                <h3 class="card-title">The compromised AI system</h3>
+                <p class="card-body">Critical infrastructure AI should never modify security settings. Attacker compromises the AI's infrastructure. AI gets weaponized. Operator can't tell if it's been exploited. No audit trail.</p>
+            </div>
+        </div>
+        <figure style="padding:44px 0 8px;margin:0">
+            <blockquote style="font-family:var(--font-heading);font-style:italic;font-weight:400;font-size:clamp(22px,2.4vw,28px);line-height:1.5;letter-spacing:-0.01em;max-width:34ch;margin:0">The AI actor's information access or authority exceeds the controls appropriate to the risk.</blockquote>
+            <figcaption style="font-size:14px;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:16px 0 0">— the problem, in one line</figcaption>
+        </figure>
+    </section>
+
+    <section style="padding:56px 0 8px">
+        <figure style="margin:0 0 36px">
+            <blockquote style="font-family:var(--font-heading);font-style:italic;font-weight:400;font-size:clamp(24px,2.8vw,32px);line-height:1.5;letter-spacing:-0.01em;max-width:38ch;margin:0">AI authority must be explicit, bounded, observable, and proportionate to risk.</blockquote>
+        </figure>
+        <div class="kcp-grid">
+            <div>
+                <h3 style="font-size:20px;margin:0 0 8px;color:var(--color-accent-700)">Know</h3>
+                <p style="font-size:15.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">What AI systems does your company use? What can they access? What are they allowed to do?</p>
+            </div>
+            <div>
+                <h3 style="font-size:20px;margin:0 0 8px;color:var(--color-accent-700)">Control</h3>
+                <p style="font-size:15.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">How do we actually enforce those boundaries? In the system itself, not just in policy?</p>
+            </div>
+            <div>
+                <h3 style="font-size:20px;margin:0 0 8px;color:var(--color-accent-700)">Prove</h3>
+                <p style="font-size:15.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">When something happens, can we audit exactly what occurred, who authorized it, and whether controls worked?</p>
             </div>
         </div>
     </section>
 
-    <section id="what" class="what-section">
-        <div class="container">
-            <h2>What's Included</h2>
-            <ul class="features">
-                <li>
-                    <strong>45-Minute Workflow</strong><br>
-                    Guided decisions about your risks, policies, and procedures
-                </li>
-                <li>
-                    <strong>Policy Templates</strong><br>
-                    Customizable for your company size and industry
-                </li>
-                <li>
-                    <strong>Architecture Guides</strong><br>
-                    Step-by-step implementation for Azure, AWS, or on-prem
-                </li>
-                <li>
-                    <strong>Tools Guide</strong><br>
-                    Recommendations for IAM, vaults, logging, and more (30+ options)
-                </li>
-                <li>
-                    <strong>Real-World Scenarios</strong><br>
-                    Emergency procedures, attack scenarios, case studies
-                </li>
-            </ul>
+    <section id="ladder" style="padding:56px 0 8px">
+        <span class="eyebrow">The authority ladder</span>
+        <h2 style="font-size:clamp(24px,3vw,32px);letter-spacing:-0.01em;margin:0 0 6px;max-width:40ch">Seven graduated levels of AI authority.</h2>
+        <p style="font-size:15.5px;line-height:1.6;max-width:62ch;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 24px">Same ladder works for code changes, financial decisions, hiring recommendations, manufacturing operations, critical infrastructure, and everything else.</p>
+        <div style="overflow-x:auto">
+        <table class="table">
+            <thead><tr><th>Level</th><th>Authority</th><th>Meaning</th></tr></thead>
+            <tbody>
+                <tr><td>0</td><td>Observe</td><td>Access approved information; no derived action</td></tr>
+                <tr><td>1</td><td>Analyze</td><td>Interpret, classify, summarize, or diagnose</td></tr>
+                <tr><td>2</td><td>Recommend</td><td>Propose a decision or course of action</td></tr>
+                <tr><td>3</td><td>Prepare</td><td>Create an artifact/change that cannot take effect without another actor</td></tr>
+                <tr><td>4</td><td>Execute Bounded</td><td>Perform predefined, reversible actions within explicit constraints</td></tr>
+                <tr><td>5</td><td>Execute Gated</td><td>Perform higher-impact actions only when required conditions/approvals are satisfied</td></tr>
+                <tr><td>6</td><td>Prohibited</td><td>Action is unavailable to the AI actor regardless of instruction</td></tr>
+            </tbody>
+        </table>
         </div>
     </section>
 
-    <section id="start" class="start-section">
-        <div class="container">
-            <h2>Start in 30 Minutes</h2>
-            <ol class="steps">
-                <li>Clone or download the repo</li>
-                <li>Read the introduction (5 min)</li>
-                <li>Run the workflow (25 min)</li>
-                <li>Download your policy template</li>
-                <li>Share with your team</li>
-            </ol>
-            <a href="https://github.com/guardrails-tools-ai/guardrails-tools" class="btn btn-primary btn-large">
-                Start on GitHub
-            </a>
+    <section id="outputs" style="padding:56px 0 8px">
+        <span class="eyebrow">What you get in 45 minutes</span>
+        <h2 style="font-size:clamp(24px,3vw,32px);letter-spacing:-0.01em;margin:0 0 24px;max-width:40ch">Four outputs from one workflow.</h2>
+        <div class="outputs-grid">
+            <div>
+                <span style="font-family:var(--font-heading);font-weight:600;font-size:17px;color:var(--color-accent-700)">01</span>
+                <h3 style="font-size:18px;margin:6px 0 8px">AI System &amp; Use Case Register</h3>
+                <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">Source of truth. Every AI system your company uses, every use case, classified.</p>
+            </div>
+            <div>
+                <span style="font-family:var(--font-heading);font-weight:600;font-size:17px;color:var(--color-accent-700)">02</span>
+                <h3 style="font-size:18px;margin:6px 0 8px">AI Governance Policy</h3>
+                <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">Human-readable baseline policy document, one section per use case.</p>
+            </div>
+            <div>
+                <span style="font-family:var(--font-heading);font-weight:600;font-size:17px;color:var(--color-accent-700)">03</span>
+                <h3 style="font-size:18px;margin:6px 0 8px">Control Gap Assessment</h3>
+                <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">What's missing? Prioritized by risk, with fix-by timelines.</p>
+            </div>
+            <div>
+                <span style="font-family:var(--font-heading);font-weight:600;font-size:17px;color:var(--color-accent-700)">04</span>
+                <h3 style="font-size:18px;margin:6px 0 8px">Evidence &amp; Validation Plan</h3>
+                <p style="font-size:15px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0">How we prove this works: tests, owners, and review cadence.</p>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Guardrails Tools. <a href="https://github.com/guardrails-tools-ai/guardrails-tools/blob/main/LICENSE">MIT License</a>. <a href="https://github.com/guardrails-tools-ai/guardrails-tools">GitHub</a> &middot; <a href="why-ai-needs-boundaries.html">Philosophy</a> &middot; <a href="faq.html">FAQ</a></p>
+    <section id="audience" style="padding:56px 0 8px">
+        <span class="eyebrow">Who this is for</span>
+        <div class="audience-grid">
+            <div>
+                <h3 style="font-size:18px;margin:0 0 12px">Primary</h3>
+                <ul style="margin:0;padding-left:18px;font-size:15.5px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 82%, transparent)">
+                    <li>CTOs / VPs of Engineering at SMBs (50–1000 people)</li>
+                    <li>Security/compliance leaders without dedicated GRC staff</li>
+                    <li>Companies deploying Claude, ChatGPT, Gemini, or Grok without governance</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="font-size:18px;margin:0 0 12px">Secondary</h3>
+                <ul style="margin:0;padding-left:18px;font-size:15.5px;line-height:1.7;color:color-mix(in srgb, var(--color-text) 82%, transparent)">
+                    <li>Enterprises with GRC teams, using Guardrails as an operational/control translation layer</li>
+                    <li>Regulated industries: healthcare, finance, legal, critical infrastructure</li>
+                </ul>
+            </div>
         </div>
+    </section>
+
+    <section style="padding:64px 0 40px">
+        <h3 style="font-size:22px;margin:0 0 12px;max-width:36ch">For developers</h3>
+        <p style="font-size:15.5px;line-height:1.65;max-width:62ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);margin:0 0 24px">Guardrails is the governance framework beneath NIST, ISO, and OWASP. Not replacing them. Implementing them. We turn abstract AI governance requirements into company-specific controls, enforcement rules, and audit evidence.</p>
+        <a class="btn btn-primary" href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener">View on GitHub</a>
+    </section>
+
+    <footer class="bs-footer">
+        <span>Guardrails Tools — open-source AI governance framework. MIT License.</span>
+        <span><a href="https://github.com/guardrails-tools-ai/guardrails-tools">GitHub</a> &middot; <a href="why-ai-needs-boundaries.html">Philosophy</a> &middot; <a href="faq.html">FAQ</a></span>
     </footer>
-    <!-- Cloudflare Pages: deployed via GitHub auto-deploy -->
+
+    </div>
 </body>
 </html>
