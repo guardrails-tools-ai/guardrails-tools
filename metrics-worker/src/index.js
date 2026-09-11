@@ -14,7 +14,7 @@ const ALLOWED_ORIGINS = [
   "https://guardrails-tools.pages.dev",
 ];
 
-const ALLOWED_PATHS = ["/", "/discover/", "/faq.html", "/why-ai-needs-boundaries.html"];
+const ALLOWED_PATHS = ["/", "/discover/", "/faq.html", "/philosophy.html"];
 
 const SID_RE = /^[a-zA-Z0-9-]{8,64}$/;
 

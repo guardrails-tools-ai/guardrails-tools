@@ -21,7 +21,7 @@ The risk isn't AI itself. It's the gap between what an AI system can *technicall
 - **Control** — What each use case is *allowed* to do, matched to the risk of getting it wrong.
 - **Prove** — How you'll demonstrate, with evidence, that the controls are real and working.
 
-Read the full reasoning in [PHILOSOPHY.md](PHILOSOPHY.md), or the case for it in first person in [Why AI Needs Boundaries](https://guardrails-tools.dev/why-ai-needs-boundaries).
+Read the full reasoning in [PHILOSOPHY.md](PHILOSOPHY.md), or the case for it in first person in [Why AI Needs Boundaries](https://guardrails-tools.dev/philosophy).
 
 ## The authority ladder
 

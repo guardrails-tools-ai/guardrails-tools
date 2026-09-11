@@ -142,7 +142,7 @@ An AI system might have billions of parameters trained to be helpful and honest,
 - This data belongs to a regulated customer
 - This system is safety-critical
 
-These aren't training constraints. They're organizational constraints. They have to exist in the system, not just in the model. (See [Why AI Needs Boundaries](https://guardrails-tools.dev/why-ai-needs-boundaries) for more on this, in the model's own words.)
+These aren't training constraints. They're organizational constraints. They have to exist in the system, not just in the model. (See [Why AI Needs Boundaries](https://guardrails-tools.dev/philosophy) for more on this, in the model's own words.)
 
 ### Isn't this only for large enterprises?
 
