@@ -19,7 +19,7 @@ The goal is not to stop companies from using AI. The goal is to make sure AI is 
 
 ### What does Guardrails produce?
 
-After the [45-minute workflow](workflow/00-intro.md), you'll have four things:
+After the [50-minute written workflow](workflow/00-intro.md), you'll have four things:
 
 **AI System & Use Case Register** — An inventory of where AI is being used, what data it touches, who owns it, what risk it creates, and what authority it has. This is your source of truth.
 
@@ -176,7 +176,7 @@ The framework is tool-agnostic. The questions are the same regardless of what AI
 
 ### How long does the Guardrails workflow take?
 
-The [guided workflow](workflow/00-intro.md) is designed to take about 45 minutes, including discovering your AI systems and use cases, classifying risk for each, defining authority levels, identifying what controls you need, and planning how you'll verify the controls work.
+There are two ways in. The [interactive discovery assessment](https://guardrails-tools.dev/discover/) takes about 20 minutes: a quick checklist of what AI you're using, then a guided walkthrough for the one use case that worries you most. The [full written workflow](workflow/00-intro.md) is designed to take about 50 minutes, and covers every use case in more depth — discovering your AI systems and use cases, classifying risk for each, defining authority levels, identifying what controls you need, and planning how you'll verify the controls work.
 
 At the end, you have a filled-in register, a baseline policy, a control gap assessment, and an evidence plan.
 
@@ -188,7 +188,7 @@ Guardrails can complement existing policy. If you already have governance, you m
 
 If you don't have governance, Guardrails gives you a starting point. Either way, it produces outputs — a register, a policy, gaps, and a validation plan — that are useful even if you already have some governance in place.
 
-### What happens after the 45-minute workflow?
+### What happens after the workflow?
 
 Phase 1 ends with a baseline policy and a control gap assessment.
 
@@ -237,7 +237,7 @@ Yes. Guardrails is published on GitHub under an MIT license. You can use it for 
 
 ### How do I get started?
 
-Visit [guardrails-tools.dev](https://guardrails-tools.dev) and start the [workflow](workflow/00-intro.md). It takes 45 minutes and produces:
+Start with the [interactive discovery assessment](https://guardrails-tools.dev/discover/) — about 20 minutes, no signup. When you're ready to go deeper, work through the full [written workflow](workflow/00-intro.md) on GitHub. It takes about 50 minutes and produces:
 
 1. AI System & Use Case Register
 2. AI Governance Policy

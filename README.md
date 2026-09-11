@@ -51,7 +51,7 @@ Risk and authority are scored **independently** — a tool that only reads privi
 
 1. Clone or download this repo.
 2. Read [`workflow/00-intro.md`](workflow/00-intro.md) (5 min).
-3. Work through Discovery, Risk Classification, Authority Definition, Control Identification, and Evidence Planning (about 45 min).
+3. Work through Discovery, Risk Classification, Authority Definition, Control Identification, and Evidence Planning (about 50 min). Or start with the free [20-minute interactive assessment](https://guardrails-tools.dev/discover/) instead.
 4. Fill in [`templates/policy-template-base.md`](templates/policy-template-base.md) with what you found.
 5. Share it with your team.
 
@@ -65,6 +65,8 @@ You'll come out the other end with four things, built from one consistent record
 ## Contributing
 
 Issues and pull requests are welcome — corrections, real-world examples, and industry-specific adaptations especially. Guardrails is meant to stay free and useful for companies that don't have a governance team; if something in the workflow was confusing or incomplete when you ran it, that's worth an issue on its own.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for what's in and out of scope, and how review works.
 
 ## Contact
 
