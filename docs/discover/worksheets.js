@@ -81,7 +81,8 @@
         hasInternal: "",
         systems: [] // { name, purpose, model, dataAccess, maintainedBy }
       },
-      completedAt: null
+      completedAt: null,
+      walkthrough: null // set once the user picks a system to walk through — see walkthrough.js
     };
   }
 

@@ -752,6 +752,138 @@ html {
     font-weight: 600;
 }
 
+/* Guided walkthrough (See -> Do -> Risk -> Controls) */
+
+.bs-page .pick-list .pick-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    margin-bottom: 8px;
+}
+
+.bs-page .pick-list .pick-item input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bs-page .pick-list .pick-item .name {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 15.5px;
+}
+
+.bs-page .pick-list .pick-item .meta {
+    font-size: 13px;
+    color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.bs-page .pick-list .pick-item:has(input:checked) {
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+}
+
+.bs-page .unsure-panel {
+    margin: 4px 0 24px;
+    padding: 16px 18px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-accent);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.bs-page .unsure-panel p {
+    margin: 0 0 8px;
+}
+
+.bs-page .unsure-panel ul {
+    margin: 0 0 12px;
+    padding-left: 20px;
+}
+
+.bs-page .unsure-panel ul li {
+    margin-bottom: 3px;
+}
+
+.bs-page .unsure-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+}
+
+.bs-page .summary-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0 28px;
+}
+
+.bs-page .status-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 15px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--color-surface);
+}
+
+.bs-page .status-badge.status-incomplete {
+    background: color-mix(in srgb, var(--color-accent-2) 12%, transparent);
+}
+
+.bs-page .status-badge.status-complete-monitor {
+    background: color-mix(in srgb, #b8860b 14%, transparent);
+}
+
+.bs-page .status-badge.status-complete {
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+}
+
+.bs-page .priority-tag {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.bs-page .summary-block {
+    margin-bottom: 30px;
+}
+
+.bs-page .summary-block h3 {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    margin: 0 0 12px;
+}
+
+.bs-page .gap-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.bs-page .gap-list .gap-none {
+    list-style: none;
+    margin-left: -20px;
+    font-style: italic;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+.bs-page .summary-teaser .teaser-list {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
 @media (max-width: 768px) {
     .bs-page .nav {
         gap: 12px 16px;

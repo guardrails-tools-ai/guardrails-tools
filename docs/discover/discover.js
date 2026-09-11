@@ -1,12 +1,18 @@
-/* Guardrails Discovery — UI controller. Depends on window.GDW from worksheets.js. */
+/* Guardrails Discovery — UI controller. Depends on window.GDW (worksheets.js)
+   and window.GDWalk (walkthrough.js). */
 (function () {
   "use strict";
 
   var STORAGE_KEY = "gd_state_v1";
   var G = window.GDW;
+  var W = window.GDWalk;
   var state = G.emptyState();
 
-  var SCREENS = ["screen-intro", "screen-1", "screen-2", "screen-3", "screen-4", "screen-shared"];
+  var SCREENS = [
+    "screen-intro", "screen-1", "screen-2", "screen-3",
+    "screen-pick", "screen-w-data", "screen-w-authority", "screen-w-risk", "screen-w-controls",
+    "screen-summary", "screen-inventory", "screen-shared"
+  ];
 
   function $(id) { return document.getElementById(id); }
 
@@ -50,13 +56,19 @@
     window.scrollTo(0, 0);
   }
 
+  var WALK_SCREEN_INDEX = { "screen-w-data": 1, "screen-w-authority": 2, "screen-w-risk": 3, "screen-w-controls": 4 };
+
   function updateProgress(id) {
     var progress = $("progress");
-    var map = { "screen-1": [1, 33], "screen-2": [2, 66], "screen-3": [3, 100] };
-    if (map[id]) {
+    var inventoryMap = { "screen-1": [1, 33], "screen-2": [2, 66], "screen-3": [3, 100] };
+    if (inventoryMap[id]) {
       progress.hidden = false;
-      $("progress-label").textContent = "Section " + map[id][0] + " of 3";
-      $("progress-fill").style.width = map[id][1] + "%";
+      $("progress-label").textContent = "Section " + inventoryMap[id][0] + " of 3";
+      $("progress-fill").style.width = inventoryMap[id][1] + "%";
+    } else if (WALK_SCREEN_INDEX[id]) {
+      progress.hidden = false;
+      $("progress-label").textContent = "Decision " + WALK_SCREEN_INDEX[id] + " of 4";
+      $("progress-fill").style.width = (WALK_SCREEN_INDEX[id] * 25) + "%";
     } else {
       progress.hidden = true;
     }
@@ -406,12 +418,12 @@
     $("s3-next").addEventListener("click", function () {
       state.completedAt = new Date().toISOString();
       saveState();
-      renderSummary();
-      showScreen("screen-4");
+      renderPick();
+      showScreen("screen-pick");
     });
   }
 
-  /* ---------------- Screen 4: Summary ---------------- */
+  /* ---------------- Inventory summary (shared by screen-pick teaser, screen-inventory, share view) ---------------- */
 
   function renderSummaryHTML(s) {
     var systems = G.allSystems(s);
@@ -451,12 +463,12 @@
     return html;
   }
 
-  function renderSummary() {
+  function renderInventorySummary() {
     $("summary-content").innerHTML = renderSummaryHTML(state);
   }
 
-  function wireScreen4() {
-    $("s4-back").addEventListener("click", function () { showScreen("screen-3"); });
+  function wireScreenInventory() {
+    $("s4-back").addEventListener("click", function () { showScreen("screen-pick"); });
     $("s4-restart").addEventListener("click", function () {
       if (window.confirm("Clear everything you've entered and start over?")) {
         state = G.emptyState();
@@ -505,6 +517,313 @@
           try { document.execCommand("copy"); toast("Link copied"); } catch (e) { /* selection is still visible for manual copy */ }
         }
       });
+    });
+
+    $("inventory-to-pick").addEventListener("click", function () { renderPick(); showScreen("screen-pick"); });
+  }
+
+  /* ---------------- Screen: Pick a system to walk through ---------------- */
+
+  function renderPick() {
+    var systems = G.allSystems(state);
+    var body = $("pick-body");
+    var actions = $("pick-actions");
+
+    if (systems.length === 0) {
+      body.innerHTML = '<p class="summary-empty">You didn\'t identify any AI systems in the checklist. If that\'s accurate, that\'s worth revisiting periodically — AI features get added to software quietly.</p>';
+      actions.innerHTML = '<button type="button" class="btn btn-primary" id="pick-none-back">← Back to the checklist</button>';
+      $("pick-count").textContent = "You didn't identify any AI systems yet.";
+      return;
+    }
+
+    $("pick-count").textContent = "You identified " + systems.length + " AI " + (systems.length === 1 ? "system" : "systems") + ". Which one concerns you most?";
+
+    var currentKey = state.walkthrough && state.walkthrough.systemKey;
+    body.innerHTML = systems.map(function (sys) {
+      var key = W.systemKeyFor(sys);
+      var checked = key === currentKey ? "checked" : "";
+      return (
+        '<label class="radio-item pick-item"><input type="radio" name="pick-system" value="' + escapeAttr(key) + '" ' + checked + '>' +
+        '<span class="name">' + escapeHtml(sys.name) + '</span>' +
+        '<span class="meta">' + escapeHtml(sys.category) + (sys.detail ? " &middot; " + escapeHtml(sys.detail) : "") + "</span>" +
+        "</label>"
+      );
+    }).join("");
+
+    actions.innerHTML =
+      '<button type="button" class="btn-link" id="pick-back">← Back to the checklist</button>' +
+      '<button type="button" class="btn-link" id="pick-skip">Skip — just download my inventory</button>' +
+      '<button type="button" class="btn btn-primary" id="pick-continue" ' + (currentKey ? "" : "disabled") + '>Continue →</button>';
+  }
+
+  // Wired once at init — #pick-body and #pick-actions are persistent containers
+  // that renderPick() only ever rewrites via innerHTML, so delegated listeners
+  // here never need re-binding (re-binding on every render would stack up
+  // duplicate handlers on those two elements).
+  function wireScreenPick() {
+    $("pick-body").addEventListener("change", function (e) {
+      if (e.target.name !== "pick-system") return;
+      var continueBtn = $("pick-continue");
+      if (continueBtn) continueBtn.disabled = false;
+    });
+
+    $("pick-actions").addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.id === "pick-none-back" || t.id === "pick-back") {
+        showScreen("screen-3");
+      } else if (t.id === "pick-skip") {
+        renderInventorySummary();
+        showScreen("screen-inventory");
+      } else if (t.id === "pick-continue") {
+        var checked = $("pick-body").querySelector('input[name="pick-system"]:checked');
+        if (!checked) return;
+        var key = checked.value;
+        var systems = G.allSystems(state);
+        var sys = systems.filter(function (s) { return W.systemKeyFor(s) === key; })[0];
+        if (!sys) return;
+        if (!state.walkthrough || state.walkthrough.systemKey !== key) {
+          state.walkthrough = W.emptyWalkthrough();
+          state.walkthrough.systemKey = key;
+          state.walkthrough.system = sys;
+        } else {
+          state.walkthrough.system = sys; // keep answers, refresh snapshot in case inventory detail changed
+        }
+        saveState();
+        renderWalkStep("data");
+        showScreen("screen-w-data");
+      }
+    });
+  }
+
+  /* ---------------- Screens: guided walkthrough (See / Do / Risk) ---------------- */
+
+  var WALK_STEP_SCREEN = { data: "screen-w-data", authority: "screen-w-authority", risk: "screen-w-risk" };
+  var WALK_STEP_NEXT = { data: "authority", authority: "risk", risk: "controls" };
+  var WALK_STEP_PREV = { data: "screen-pick", authority: "screen-w-data", risk: "screen-w-authority" };
+
+  function unsurePanelHTML(step, systemName) {
+    return (
+      '<div class="unsure-panel">' +
+      '<p><strong>What you\'re asking about:</strong> ' + escapeHtml(step.explain) + '</p>' +
+      '<p><strong>Suggested prompt for ' + escapeHtml(W.fill(step.askWho, systemName)) + ':</strong> “' + escapeHtml(W.fill(step.prompt, systemName)) + '”</p>' +
+      '<p><strong>What you\'re looking for:</strong></p>' +
+      '<ul>' + step.examples.map(function (ex) { return "<li>" + escapeHtml(ex) + "</li>"; }).join("") + '</ul>' +
+      '<div class="unsure-actions">' +
+      '<button type="button" class="btn btn-secondary" data-unsure-action="ask">Ask ' + escapeHtml(W.fill(step.askWho, systemName)) + ' first, I\'ll come back</button>' +
+      '<button type="button" class="btn-link" data-unsure-action="skip">Skip for now</button>' +
+      '<button type="button" class="btn-link" data-unsure-action="guess">Continue with best guess</button>' +
+      "</div></div>"
+    );
+  }
+
+  function renderWalkStep(key) {
+    var step = W.STEPS[key];
+    var w = state.walkthrough;
+    var systemName = w.system.name;
+    var answer = w.answers[key];
+
+    $(key === "data" ? "w-data-title" : key === "authority" ? "w-authority-title" : "w-risk-title").textContent = W.fill(step.question, systemName);
+    $(key === "data" ? "w-data-system" : key === "authority" ? "w-authority-system" : "w-risk-system").textContent = "Walking through: " + systemName + " (" + w.system.category + ")";
+
+    var listHtml = step.options.map(function (o) {
+      var checked = answer.value === o.id ? "checked" : "";
+      return '<label class="radio-item"><input type="radio" name="walk-' + key + '" value="' + o.id + '" ' + checked + "> " + escapeHtml(o.label) + "</label>";
+    }).join("");
+    listHtml += '<label class="radio-item"><input type="radio" name="walk-' + key + '" value="unsure" ' + (answer.value === "unsure" ? "checked" : "") + "> " + escapeHtml(step.unsureLabel) + "</label>";
+
+    var container = $("w-" + key + "-list");
+    container.innerHTML = listHtml;
+
+    var panelContainer = $("w-" + key + "-panel");
+    panelContainer.innerHTML = answer.value === "unsure" ? unsurePanelHTML(step, systemName) : "";
+  }
+
+  function wireWalkStep(key) {
+    var listEl = $("w-" + key + "-list");
+    var panelEl = $("w-" + key + "-panel");
+
+    listEl.addEventListener("change", function (e) {
+      if (e.target.name !== "walk-" + key) return;
+      state.walkthrough.answers[key].value = e.target.value;
+      state.walkthrough.answers[key].unsureAction = "";
+      saveState();
+      renderWalkStep(key);
+    });
+
+    panelEl.addEventListener("click", function (e) {
+      var action = e.target.getAttribute("data-unsure-action");
+      if (!action) return;
+      if (action === "guess") {
+        state.walkthrough.answers[key].value = "";
+        state.walkthrough.answers[key].unsureAction = "";
+      } else {
+        state.walkthrough.answers[key].unsureAction = action;
+      }
+      saveState();
+      renderWalkStep(key);
+    });
+
+    $("w-" + key + "-back").addEventListener("click", function () { showScreen(WALK_STEP_PREV[key]); });
+    $("w-" + key + "-next").addEventListener("click", function () {
+      var nextKey = WALK_STEP_NEXT[key];
+      if (nextKey === "controls") {
+        renderWalkControls();
+        showScreen("screen-w-controls");
+      } else {
+        renderWalkStep(nextKey);
+        showScreen(WALK_STEP_SCREEN[nextKey]);
+      }
+    });
+  }
+
+  /* ---------------- Screen: controls (multi-select) ---------------- */
+
+  function renderWalkControls() {
+    var w = state.walkthrough;
+    var systemName = w.system.name;
+    var c = w.answers.controls;
+
+    $("w-controls-title").textContent = W.fill(W.CONTROLS_STEP.question, systemName);
+    $("w-controls-system").textContent = "Walking through: " + systemName + " (" + w.system.category + ")";
+
+    var listHtml = W.CONTROL_OPTIONS.map(function (o) {
+      var checked = c.selected.indexOf(o.id) !== -1 ? "checked" : "";
+      return '<label class="check-item"><input type="checkbox" data-control="' + o.id + '" ' + checked + "> " + escapeHtml(o.label) + "</label>";
+    }).join("");
+    listHtml += '<label class="check-item"><input type="checkbox" data-control="' + W.CONTROL_NONE + '" ' + (c.selected.indexOf(W.CONTROL_NONE) !== -1 ? "checked" : "") + "> We don't have any of these controls in place</label>";
+    listHtml += '<label class="check-item"><input type="checkbox" id="controls-unsure" ' + (c.selected.length === 0 && c.unsureAction ? "checked" : "") + "> I'm not sure what controls are in place</label>";
+
+    $("w-controls-list").innerHTML = listHtml;
+
+    var panel = $("w-controls-panel");
+    panel.innerHTML = (c.selected.length === 0 && c.unsureAction) ? unsurePanelHTML(Object.assign({}, W.CONTROLS_STEP, { unsureLabel: "" }), systemName) : "";
+  }
+
+  function wireWalkControls() {
+    $("w-controls-list").addEventListener("change", function (e) {
+      var t = e.target;
+      var c = state.walkthrough.answers.controls;
+
+      if (t.id === "controls-unsure") {
+        if (t.checked) {
+          c.selected = [];
+          c.unsureAction = "guess-pending";
+        } else {
+          c.unsureAction = "";
+        }
+        saveState();
+        renderWalkControls();
+        return;
+      }
+
+      var id = t.getAttribute("data-control");
+      if (!id) return;
+      c.unsureAction = "";
+      if (id === W.CONTROL_NONE) {
+        c.selected = t.checked ? [W.CONTROL_NONE] : [];
+      } else {
+        var idx = c.selected.indexOf(id);
+        if (t.checked) {
+          c.selected = c.selected.filter(function (x) { return x !== W.CONTROL_NONE; });
+          if (idx === -1) c.selected.push(id);
+        } else if (idx !== -1) {
+          c.selected.splice(idx, 1);
+        }
+      }
+      saveState();
+      renderWalkControls();
+    });
+
+    $("w-controls-panel").addEventListener("click", function (e) {
+      var action = e.target.getAttribute("data-unsure-action");
+      if (!action) return;
+      var c = state.walkthrough.answers.controls;
+      if (action === "guess") {
+        c.unsureAction = "";
+      } else {
+        c.unsureAction = action;
+      }
+      saveState();
+      renderWalkControls();
+    });
+
+    $("w-controls-back").addEventListener("click", function () { renderWalkStep("risk"); showScreen("screen-w-risk"); });
+    $("w-controls-next").addEventListener("click", function () {
+      state.walkthrough.completedAt = new Date().toISOString();
+      saveState();
+      renderWalkSummary();
+      showScreen("screen-summary");
+    });
+  }
+
+  /* ---------------- Screen: walkthrough summary ---------------- */
+
+  function otherDiscoveredSystems() {
+    var all = G.allSystems(state);
+    var currentKey = state.walkthrough.systemKey;
+    return all.filter(function (s) { return W.systemKeyFor(s) !== currentKey; });
+  }
+
+  function renderWalkSummary() {
+    var w = state.walkthrough;
+    var status = W.overallStatus(w);
+    var priority = W.priorityFor(w);
+    var rows = W.decisionSummaryRows(w);
+    var actions = W.buildActionList(w);
+    var missing = W.missingControls(w);
+    var evidence = W.buildEvidencePlan(w.system.name);
+    var others = otherDiscoveredSystems();
+
+    $("summary-system-name").textContent = w.system.name + " (" + w.system.category + ")";
+
+    $("summary-status").innerHTML =
+      '<span class="status-badge status-' + status.code + '">' + status.icon + " " + status.label + "</span>" +
+      '<span class="priority-tag">Priority: ' + priority + "</span>";
+
+    $("summary-decisions").innerHTML = rows.map(function (r) {
+      return '<div class="summary-item"><span class="name">' + escapeHtml(r.label) + (r.severity ? " " + W.severityDot(r.severity) : "") + '</span><div class="meta">' + escapeHtml(r.value) + "</div></div>";
+    }).join("");
+
+    $("summary-gaps").innerHTML = missing.length === 0
+      ? '<li class="gap-none">None — every control on our checklist is already in place. Keep re-verifying periodically.</li>'
+      : missing.map(function (m) { return "<li>" + escapeHtml(m.label) + "</li>"; }).join("");
+
+    $("summary-actions").innerHTML = actions.length === 0
+      ? '<li class="gap-none">No open items — nothing left to confirm or fix based on what you told us.</li>'
+      : actions.map(function (a) { return "<li><strong>Ask " + escapeHtml(a.who) + ":</strong> " + escapeHtml(a.what) + "</li>"; }).join("");
+
+    $("summary-evidence").innerHTML = evidence.map(function (e) { return "<li>" + escapeHtml(e) + "</li>"; }).join("");
+
+    var teaser = $("summary-teaser");
+    if (others.length > 0) {
+      teaser.hidden = false;
+      teaser.querySelector(".teaser-list").innerHTML = others.map(function (s) { return "<li>" + escapeHtml(s.name) + " (" + escapeHtml(s.category) + ")</li>"; }).join("");
+    } else {
+      teaser.hidden = true;
+    }
+  }
+
+  function wireScreenSummary() {
+    $("summary-back").addEventListener("click", function () { renderWalkControls(); showScreen("screen-w-controls"); });
+    $("summary-pick-other").addEventListener("click", function () { renderPick(); showScreen("screen-pick"); });
+    $("summary-inventory").addEventListener("click", function () { renderInventorySummary(); showScreen("screen-inventory"); });
+
+    $("summary-export-pdf").addEventListener("click", function () {
+      try {
+        var doc = W.buildWalkthroughPdf(state.walkthrough, otherDiscoveredSystems());
+        doc.save("ai-governance-decision-summary.pdf");
+        toast("Downloaded ai-governance-decision-summary.pdf");
+      } catch (e) {
+        toast("PDF tool didn't load — try the Markdown download instead.");
+      }
+    });
+    $("summary-export-md").addEventListener("click", function () {
+      G.downloadTextFile("ai-governance-decision-summary.md", W.buildWalkthroughMarkdown(state.walkthrough, otherDiscoveredSystems()), "text/markdown;charset=utf-8");
+      toast("Downloaded ai-governance-decision-summary.md");
+    });
+    $("summary-export-json").addEventListener("click", function () {
+      G.downloadTextFile("ai-governance-decision-summary.json", W.buildWalkthroughJSON(state.walkthrough, otherDiscoveredSystems()), "application/json;charset=utf-8");
+      toast("Downloaded ai-governance-decision-summary.json");
     });
   }
 
@@ -582,7 +901,15 @@
     renderScreen1();
     renderScreen2();
     renderScreen3();
-    renderSummary();
+    renderInventorySummary();
+    renderPick();
+    if (state.walkthrough && state.walkthrough.system) {
+      renderWalkStep("data");
+      renderWalkStep("authority");
+      renderWalkStep("risk");
+      renderWalkControls();
+      if (state.walkthrough.completedAt) renderWalkSummary();
+    }
   }
 
   /* ---------------- init ---------------- */
@@ -596,7 +923,13 @@
     wireScreen1();
     wireScreen2();
     wireScreen3();
-    wireScreen4();
+    wireScreenInventory();
+    wireScreenPick();
+    wireWalkStep("data");
+    wireWalkStep("authority");
+    wireWalkStep("risk");
+    wireWalkControls();
+    wireScreenSummary();
     renderAllScreens();
     wireResumeBanner(saved);
     showScreen("screen-intro");

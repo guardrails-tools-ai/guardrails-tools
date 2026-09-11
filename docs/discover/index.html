@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Out What AI You're Actually Using | Guardrails Tools</title>
-    <meta name="description" content="A free 10-minute checklist to find out what AI your business is actually using — the tools people use directly, the AI already built into apps you pay for, and anything custom your team built. No signup, nothing saved anywhere but your own browser.">
+    <meta name="description" content="A free checklist to find out what AI your business is actually using, then a guided walkthrough that helps you make real decisions about the one that concerns you most. No signup, nothing saved anywhere but your own browser.">
     <meta property="og:title" content="Find Out What AI You're Actually Using">
-    <meta property="og:description" content="A free 10-minute checklist. No signup. Nothing leaves your browser.">
+    <meta property="og:description" content="A free checklist, then a guided walkthrough for the AI use case that worries you most. No signup. Nothing leaves your browser.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://guardrails-tools.dev/discover/">
     <meta name="twitter:card" content="summary">
@@ -55,13 +55,16 @@
 
         <!-- SCREEN 0: intro -->
         <section id="screen-intro" class="discover-card">
-            <span class="eyebrow">Free · 10 minutes · Nothing saved anywhere but your browser</span>
-            <h2>Let's find out what AI your business is actually using.</h2>
+            <span class="eyebrow">Free · Nothing saved anywhere but your browser</span>
+            <h2>Let's find out what AI your business is actually using — then walk through the one that worries you most.</h2>
             <p class="intro">
-                We'll ask about three things: AI tools people use directly (like ChatGPT or Claude), AI features already built into apps you pay for (like Salesforce or Microsoft 365), and any custom systems your team may have built. Most businesses find more than they expected.
+                First, a quick checklist (about 2-3 minutes): AI tools people use directly (like ChatGPT or Claude), AI features already built into apps you pay for (like Salesforce or Microsoft 365), and any custom systems your team may have built. Most businesses find more than they expected.
             </p>
             <p class="intro">
-                At the end, you'll get a plain-language summary you can download, print, or share with whoever needs to see it — a partner, an accountant, an IT contractor, or just yourself for later.
+                Then we'll ask which one concerns you most, and walk through it with you (about 15 minutes): what it can see, what it can do, what happens if it's wrong, and what's stopping that from turning into a real problem. You'll come out the other end with a decision, not just a list.
+            </p>
+            <p class="intro">
+                Don't know an answer? That's normal, not a failure — we'll tell you exactly who to ask and what to say.
             </p>
             <div class="discover-actions" style="border-top:none;padding-top:0;">
                 <a href="https://github.com/guardrails-tools-ai/guardrails-tools/tree/main/workflow" target="_blank" rel="noopener" class="btn-link" style="margin:0;">Skip to the full written workflow →</a>
@@ -134,10 +137,124 @@
             </div>
         </section>
 
-        <!-- SCREEN 4: Summary & export -->
-        <section id="screen-4" class="discover-card" hidden>
-            <span class="eyebrow">You're done</span>
-            <h2>Here's what you told us.</h2>
+        <!-- SCREEN: Pick which system to walk through -->
+        <section id="screen-pick" class="discover-card" hidden>
+            <span class="eyebrow">Checklist complete</span>
+            <h2 id="pick-count">Which one concerns you most?</h2>
+            <p class="intro">Pick one. We'll walk through it in detail — what it can see, what it can do, what happens if it's wrong, and what's protecting you today. You can come back and do this for the others later.</p>
+
+            <div class="radio-list pick-list" id="pick-body"></div>
+
+            <div class="discover-actions" id="pick-actions"></div>
+        </section>
+
+        <!-- SCREEN: Walkthrough decision 1 — data boundary -->
+        <section id="screen-w-data" class="discover-card" hidden>
+            <span class="eyebrow" id="w-data-system">Walking through</span>
+            <h2 id="w-data-title">What can it see?</h2>
+            <div class="radio-list" id="w-data-list"></div>
+            <div id="w-data-panel"></div>
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="w-data-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="w-data-next">Continue →</button>
+            </div>
+        </section>
+
+        <!-- SCREEN: Walkthrough decision 2 — authority -->
+        <section id="screen-w-authority" class="discover-card" hidden>
+            <span class="eyebrow" id="w-authority-system">Walking through</span>
+            <h2 id="w-authority-title">What can it do?</h2>
+            <div class="radio-list" id="w-authority-list"></div>
+            <div id="w-authority-panel"></div>
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="w-authority-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="w-authority-next">Continue →</button>
+            </div>
+        </section>
+
+        <!-- SCREEN: Walkthrough decision 3 — risk / impact -->
+        <section id="screen-w-risk" class="discover-card" hidden>
+            <span class="eyebrow" id="w-risk-system">Walking through</span>
+            <h2 id="w-risk-title">What happens if it's wrong?</h2>
+            <div class="radio-list" id="w-risk-list"></div>
+            <div id="w-risk-panel"></div>
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="w-risk-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="w-risk-next">Continue →</button>
+            </div>
+        </section>
+
+        <!-- SCREEN: Walkthrough decision 4 — controls -->
+        <section id="screen-w-controls" class="discover-card" hidden>
+            <span class="eyebrow" id="w-controls-system">Walking through</span>
+            <h2 id="w-controls-title">What keeps that risk bounded?</h2>
+            <p class="intro">Check everything that's actually true today — not what you're planning to add.</p>
+            <div class="check-list" id="w-controls-list"></div>
+            <div id="w-controls-panel"></div>
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="w-controls-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="w-controls-next">See my decision summary →</button>
+            </div>
+        </section>
+
+        <!-- SCREEN: Walkthrough decision summary -->
+        <section id="screen-summary" class="discover-card" hidden>
+            <span class="eyebrow">Your decision summary</span>
+            <h2 id="summary-system-name">System</h2>
+            <div id="summary-status" class="summary-status"></div>
+
+            <div class="summary-block">
+                <h3>Your decisions</h3>
+                <div id="summary-decisions"></div>
+            </div>
+
+            <div class="summary-block">
+                <h3>Controls needed</h3>
+                <ul class="gap-list" id="summary-gaps"></ul>
+            </div>
+
+            <div class="summary-block">
+                <h3>Action list</h3>
+                <ul class="gap-list" id="summary-actions"></ul>
+            </div>
+
+            <div class="summary-block">
+                <h3>Evidence plan</h3>
+                <ul class="gap-list" id="summary-evidence"></ul>
+            </div>
+
+            <div class="export-grid">
+                <button type="button" class="btn btn-primary" id="summary-export-pdf">Download as PDF</button>
+                <button type="button" class="btn btn-secondary" id="summary-export-md">Download as Markdown</button>
+                <button type="button" class="btn btn-secondary" id="summary-export-json">Download as JSON</button>
+            </div>
+
+            <div class="discover-banner summary-teaser" id="summary-teaser" hidden>
+                You also identified these — each deserves its own walkthrough:
+                <ul class="teaser-list"></ul>
+                A tool for assessing all of them at once is coming soon.
+            </div>
+
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="summary-back">← Back to edit</button>
+                <button type="button" class="btn-link" id="summary-inventory">See full inventory</button>
+                <button type="button" class="btn btn-primary" id="summary-pick-other">Walk through another system →</button>
+            </div>
+
+            <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--color-divider);">
+                <h3 style="font-size:18px;margin:0 0 10px;">What's next?</h3>
+                <p style="font-size:15px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 16px;">This walkthrough is one system. The full written workflow covers the same decisions in more depth, for every use case you have.</p>
+                <div style="display:flex;gap:15px;flex-wrap:wrap;">
+                    <a class="btn btn-ghost" href="https://github.com/guardrails-tools-ai/guardrails-tools/tree/main/workflow" target="_blank" rel="noopener">Read the full workflow</a>
+                    <a class="btn btn-ghost" href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN: Full inventory & export (the original checklist summary) -->
+        <section id="screen-inventory" class="discover-card" hidden>
+            <span class="eyebrow">Your full inventory</span>
+            <h2>Here's everything you told us.</h2>
             <p class="intro">Nothing here has been sent anywhere. It only exists in this browser until you download or share it.</p>
 
             <div id="summary-content"></div>
@@ -150,15 +267,16 @@
             <div class="share-box" id="share-box"></div>
 
             <div class="discover-actions">
-                <button type="button" class="btn-link" id="s4-back">← Back to edit</button>
+                <button type="button" class="btn-link" id="s4-back">← Back</button>
                 <button type="button" class="btn-link" id="s4-restart">Start over</button>
+                <button type="button" class="btn btn-primary" id="inventory-to-pick">Walk through one of these →</button>
             </div>
 
             <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--color-divider);">
                 <h3 style="font-size:18px;margin:0 0 10px;">What's next?</h3>
                 <p style="font-size:15px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 16px;">This checklist is the first step. The full written workflow walks you through deciding what each of these AI tools should actually be allowed to do, and how to check that it's working.</p>
                 <div style="display:flex;gap:15px;flex-wrap:wrap;">
-                    <a class="btn btn-primary" href="https://github.com/guardrails-tools-ai/guardrails-tools/tree/main/workflow" target="_blank" rel="noopener">Read the full workflow</a>
+                    <a class="btn btn-ghost" href="https://github.com/guardrails-tools-ai/guardrails-tools/tree/main/workflow" target="_blank" rel="noopener">Read the full workflow</a>
                     <a class="btn btn-ghost" href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener">View on GitHub</a>
                 </div>
             </div>
@@ -177,6 +295,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <script src="worksheets.js?v=1"></script>
-    <script src="discover.js?v=1"></script>
+    <script src="walkthrough.js?v=1"></script>
+    <script src="discover.js?v=2"></script>
 </body>
 </html>
