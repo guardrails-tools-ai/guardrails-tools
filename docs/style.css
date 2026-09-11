@@ -135,6 +135,18 @@ html {
     background: color-mix(in srgb, var(--color-accent) 10%, transparent);
 }
 
+.bs-page .btn-secondary {
+    border-color: var(--color-divider);
+}
+
+.bs-page .btn-secondary:hover {
+    background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+
+.bs-page .btn-secondary:active {
+    background: color-mix(in srgb, var(--color-text) 14%, transparent);
+}
+
 /* Status strip */
 .bs-page .hr-heavy {
     height: 5px;
