@@ -1,5 +1,7 @@
 # Philosophy
 
+*This explains the reasoning behind Guardrails — the "why," not the "how." To actually use the framework: the [guided assessment](https://guardrails-tools.dev/discover/) walks through one AI use case in about 20 minutes; the [written workflow](workflow/00-intro.md) covers every use case in about 50.*
+
 ## The thesis
 
 **AI authority must be explicit, bounded, observable, and proportionate to risk.**

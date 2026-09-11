@@ -19,7 +19,7 @@ The goal is not to stop companies from using AI. The goal is to make sure AI is 
 
 ### What does Guardrails produce?
 
-After the [50-minute written workflow](workflow/00-intro.md), you'll have four things:
+After the [guided assessment](https://guardrails-tools.dev/discover/) (one use case, 20 minutes) or the [full written workflow](workflow/00-intro.md) (every use case, 50 minutes), you'll have four things:
 
 **AI System & Use Case Register** — An inventory of where AI is being used, what data it touches, who owns it, what risk it creates, and what authority it has. This is your source of truth.
 
