@@ -56,6 +56,7 @@
                 <li><a href="#distrusting-ai">Isn't this about distrusting AI?</a></li>
                 <li><a href="#only-chatgpt-claude">Isn't this only for companies using ChatGPT or Claude?</a></li>
                 <li><a href="#how-long">How long does the Guardrails workflow take?</a></li>
+                <li><a href="#does-guardrails-track-me">Does Guardrails track or store what I enter?</a></li>
                 <li><a href="#already-have-policy">What if we already have an AI governance policy?</a></li>
                 <li><a href="#after-the-workflow">What happens after the workflow?</a></li>
                 <li><a href="#customized-for-industry">Can Guardrails be customized for our industry?</a></li>
@@ -292,6 +293,24 @@
         <p>At the end, you have a filled-in register, a baseline policy, a control gap assessment, and an evidence plan.</p>
         <p>Is that realistic for a large organization? Maybe not a full governance review, but a solid baseline that you then layer deeper controls onto.</p>
         <p>Is it realistic for a small organization? Yes. It's designed for companies that don't have dedicated governance staff.</p>
+
+        <hr>
+
+        <h2 id="does-guardrails-track-me">Does Guardrails track or store what I enter?</h2>
+        <p>There's no signup and no account. What you type or select in the discovery assessment — your AI tools, your answers, your notes — stays in your own browser. It only ever leaves if you choose to download a worksheet, export a summary, or generate a share link.</p>
+        <p>We do collect anonymous usage analytics, and we'd rather tell you exactly what that means than leave it vague:</p>
+        <ul>
+            <li>Which steps people reach and complete (started the checklist, finished the inventory, picked a system, finished the walkthrough)</li>
+            <li>What <em>category</em> of system was picked — "a direct AI tool" or "an internal system," never the name you typed</li>
+            <li>Whether a question was answered or left "I'm not sure," and whether you chose to ask someone, skip it, or come back — never which specific answer you gave</li>
+            <li>The computed status and priority of a finished walkthrough (like "incomplete, high priority") — not the underlying answers that produced it</li>
+            <li>Which export format you used (PDF, Markdown, or JSON)</li>
+            <li>Your answers to the optional 3-question feedback survey, if you submit it</li>
+        </ul>
+        <p>What we never collect: free text, the specific option you picked on any question, system names, your name, or your email address. There's nothing to opt out of because there's nothing personal being sent in the first place.</p>
+        <p>Each visit gets a random, temporary session code so we can count how many people get through each step, rather than counting the same person's reloads as new visitors. It lives only in your browser's session storage — not a cookie — and disappears when you close the tab. It's never linked to you across visits or devices.</p>
+        <p>Why collect anything at all? So we know whether the walkthrough actually works — whether people finish it, where they get stuck, whether the "I'm not sure" prompts help — instead of guessing. This is Phase 1; we're using it to decide what to fix before building more.</p>
+        <p>Since Guardrails is open source, you don't have to take our word for any of this — the collection code is public: <a href="https://github.com/guardrails-tools-ai/guardrails-tools/blob/main/metrics-worker/src/index.js">metrics-worker/src/index.js</a>. It rejects anything outside a fixed, published list of event types and fields.</p>
 
         <hr>
 
