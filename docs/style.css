@@ -421,6 +421,325 @@ html {
     margin: 10px 0;
 }
 
+/* Discovery questionnaire */
+.bs-page .discover-shell {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 0 100px;
+}
+
+.bs-page .discover-progress {
+    margin-bottom: 28px;
+}
+
+.bs-page .discover-progress .label {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.bs-page .discover-progress .track {
+    height: 4px;
+    background: var(--color-divider);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.bs-page .discover-progress .fill {
+    height: 100%;
+    background: var(--color-accent);
+    transition: width 0.25s ease;
+}
+
+.bs-page .discover-card h2 {
+    font-size: clamp(22px, 3.5vw, 28px);
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+}
+
+.bs-page .discover-card > .intro {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-text) 78%, transparent);
+    margin: 0 0 28px;
+}
+
+.bs-page .discover-question {
+    margin-bottom: 32px;
+}
+
+.bs-page .discover-question > .q-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.bs-page .discover-question > .q-hint {
+    font-size: 13.5px;
+    color: color-mix(in srgb, var(--color-text) 65%, transparent);
+    margin: -8px 0 12px;
+}
+
+.bs-page .check-list,
+.bs-page .radio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.bs-page .check-item,
+.bs-page .radio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.bs-page .check-item:hover,
+.bs-page .radio-item:hover {
+    background: color-mix(in srgb, var(--color-text) 5%, transparent);
+}
+
+.bs-page .check-item input,
+.bs-page .radio-item input {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    flex: none;
+    accent-color: var(--color-accent);
+}
+
+.bs-page .other-text {
+    width: 100%;
+    max-width: 360px;
+    margin-top: 8px;
+    margin-left: 26px;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 14px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+}
+
+.bs-page .other-text:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+}
+
+.bs-page .subblock {
+    margin: 14px 0 0 26px;
+    padding: 14px 16px;
+    border-left: 2px solid var(--color-divider);
+    background: color-mix(in srgb, var(--color-text) 3%, transparent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.bs-page .app-row {
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 10px;
+}
+
+.bs-page .app-row .app-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.bs-page .app-row .app-head label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 15.5px;
+    cursor: pointer;
+}
+
+.bs-page .app-row .app-head input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-accent);
+}
+
+.bs-page .system-entry {
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.bs-page .system-entry .field {
+    margin-bottom: 12px;
+}
+
+.bs-page .system-entry label {
+    display: block;
+    font-size: 13px;
+    color: color-mix(in srgb, var(--color-text) 65%, transparent);
+    margin-bottom: 4px;
+}
+
+.bs-page .system-entry input[type="text"],
+.bs-page .system-entry textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 14.5px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+}
+
+.bs-page .system-entry .remove-system {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: color-mix(in srgb, var(--color-text) 55%, transparent);
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+.bs-page .discover-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-divider);
+}
+
+.bs-page .btn-link {
+    background: none;
+    border: none;
+    color: var(--color-accent-700);
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 4px;
+}
+
+.bs-page .btn-link:hover {
+    color: var(--color-accent);
+}
+
+.bs-page .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.bs-page .summary-group {
+    margin-bottom: 28px;
+}
+
+.bs-page .summary-group h3 {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    margin: 0 0 10px;
+}
+
+.bs-page .summary-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-divider);
+    font-size: 15px;
+}
+
+.bs-page .summary-item .name {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+}
+
+.bs-page .summary-item .meta {
+    font-size: 13.5px;
+    color: color-mix(in srgb, var(--color-text) 65%, transparent);
+    margin-top: 2px;
+}
+
+.bs-page .summary-empty {
+    font-size: 14.5px;
+    font-style: italic;
+    color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+.bs-page .export-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.bs-page .export-grid .btn {
+    width: 100%;
+}
+
+.bs-page .share-box {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    font-size: 13.5px;
+    word-break: break-all;
+}
+
+.bs-page .share-box.visible {
+    display: block;
+}
+
+.bs-page .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 200;
+}
+
+.bs-page .toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.bs-page .discover-banner {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.bs-page .discover-banner a {
+    font-weight: 600;
+}
+
 @media (max-width: 768px) {
     .bs-page .nav {
         gap: 12px 16px;
@@ -432,5 +751,33 @@ html {
 
     .bs-page .article .toc ul {
         columns: 1;
+    }
+
+    .bs-page .discover-shell {
+        padding: 32px 0 80px;
+    }
+
+    .bs-page .other-text {
+        margin-left: 0;
+    }
+
+    .bs-page .subblock {
+        margin-left: 0;
+    }
+}
+
+/* Fallback print view: used only if PDF export can't load its library.
+   Everything is hidden except #summary-content when body carries
+   .print-summary-only, so window.print() produces a clean single page. */
+@media print {
+    body.print-summary-only .nav,
+    body.print-summary-only .discover-progress,
+    body.print-summary-only .discover-actions,
+    body.print-summary-only .export-grid,
+    body.print-summary-only .share-box,
+    body.print-summary-only .bs-footer,
+    body.print-summary-only .discover-card > .eyebrow,
+    body.print-summary-only .discover-card > h2 + p.intro {
+        display: none !important;
     }
 }

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Out What AI You're Actually Using | Guardrails Tools</title>
+    <meta name="description" content="A free 10-minute checklist to find out what AI your business is actually using — the tools people use directly, the AI already built into apps you pay for, and anything custom your team built. No signup, nothing saved anywhere but your own browser.">
+    <meta property="og:title" content="Find Out What AI You're Actually Using">
+    <meta property="og:description" content="A free 10-minute checklist. No signup. Nothing leaves your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://guardrails-tools.dev/discover/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Find Out What AI You're Actually Using">
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+    <link rel="stylesheet" href="../style.css?v=3">
+</head>
+<body class="bs-page">
+    <nav class="nav">
+        <span class="nav-brand"><a href="../index.html" style="color:inherit;text-decoration:none;">Guardrails Tools</a></span>
+        <a href="../index.html#problem">Problem</a>
+        <a href="../why-ai-needs-boundaries.html">Philosophy</a>
+        <a href="../faq.html">FAQ</a>
+        <a href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+
+    <div class="bs-container">
+    <div class="discover-shell">
+
+        <div class="discover-progress" id="progress" hidden>
+            <span class="label" id="progress-label">Section 1 of 3</span>
+            <div class="track"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+        </div>
+
+        <!-- SCREEN: resume banner (shown only if saved progress exists, above intro) -->
+        <div class="discover-banner" id="resume-banner" hidden>
+            You have saved progress from a previous visit.
+            <a href="#" id="resume-link">Continue where you left off</a> or
+            <a href="#" id="restart-link">start over</a>.
+        </div>
+
+        <!-- SCREEN: shared read-only view (when ?share= is present) -->
+        <section id="screen-shared" hidden>
+            <span class="eyebrow">Shared discovery worksheet</span>
+            <h2 style="font-size:clamp(24px,4vw,32px);margin:0 0 8px;">Someone shared their AI discovery with you</h2>
+            <p class="intro" style="margin-bottom:28px;">This is a read-only view of another company's answers. Nothing here is connected to your own browser or data.</p>
+            <div id="shared-summary"></div>
+            <div class="discover-actions" style="justify-content:center;border-top:none;padding-top:0;">
+                <a class="btn btn-primary" href="./">Start your own discovery →</a>
+            </div>
+        </section>
+
+        <!-- SCREEN 0: intro -->
+        <section id="screen-intro" class="discover-card">
+            <span class="eyebrow">Free · 10 minutes · Nothing saved anywhere but your browser</span>
+            <h2>Let's find out what AI your business is actually using.</h2>
+            <p class="intro">
+                We'll ask about three things: AI tools people use directly (like ChatGPT or Claude), AI features already built into apps you pay for (like Salesforce or Microsoft 365), and any custom systems your team may have built. Most businesses find more than they expected.
+            </p>
+            <p class="intro">
+                At the end, you'll get a plain-language summary you can download, print, or share with whoever needs to see it — a partner, an accountant, an IT contractor, or just yourself for later.
+            </p>
+            <div class="discover-actions" style="border-top:none;padding-top:0;">
+                <a href="https://github.com/guardrails-tools-ai/guardrails-tools/tree/main/workflow" target="_blank" rel="noopener" class="btn-link" style="margin:0;">Skip to the full written workflow →</a>
+                <button type="button" class="btn btn-primary" id="btn-start">Start</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 1: Direct AI tools -->
+        <section id="screen-1" class="discover-card" hidden>
+            <span class="eyebrow">Part 1 of 3</span>
+            <h2>Which AI tools do you or your team use directly?</h2>
+            <p class="intro">Check anything anyone uses — including tools people signed up for on their own, not just ones the business officially bought.</p>
+
+            <div class="discover-question">
+                <span class="q-label">Tools in use</span>
+                <div class="check-list" id="tools-list"></div>
+            </div>
+
+            <div id="tool-followups"></div>
+
+            <div class="discover-question" id="q-sensitivity" hidden>
+                <span class="q-label">What's the most sensitive kind of information anyone has typed or pasted into one of these?</span>
+                <span class="q-hint">Pick the most sensitive one that applies.</span>
+                <div class="radio-list" id="sensitivity-list"></div>
+            </div>
+
+            <div class="discover-question" id="q-visibility" hidden>
+                <span class="q-label">Do you have any visibility into how these tools are actually used?</span>
+                <div class="radio-list" id="visibility-list"></div>
+            </div>
+
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="s1-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="s1-next">Continue</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Business app AI features -->
+        <section id="screen-2" class="discover-card" hidden>
+            <span class="eyebrow">Part 2 of 3</span>
+            <h2>Do any of your everyday business apps have AI built in?</h2>
+            <p class="intro">This is the part most businesses miss. A lot of software you already pay for has quietly added AI features — check the ones you use, and we'll ask what's turned on.</p>
+
+            <div id="apps-list"></div>
+
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="s2-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="s2-next">Continue</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Internal systems -->
+        <section id="screen-3" class="discover-card" hidden>
+            <span class="eyebrow">Part 3 of 3</span>
+            <h2>Has anyone built a custom system that uses AI?</h2>
+            <p class="intro">This means something built in-house — a chatbot, an automated workflow, a script that calls Claude or OpenAI, that kind of thing. Most small businesses have none. Some have several.</p>
+
+            <div class="discover-question">
+                <div class="radio-list" id="internal-yesno-list"></div>
+            </div>
+
+            <div id="systems-block" hidden>
+                <div id="systems-list"></div>
+                <button type="button" class="btn btn-secondary" id="add-system" style="margin-top:4px;">+ Add a system</button>
+            </div>
+
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="s3-back">← Back</button>
+                <button type="button" class="btn btn-primary" id="s3-next">See my summary</button>
+            </div>
+        </section>
+
+        <!-- SCREEN 4: Summary & export -->
+        <section id="screen-4" class="discover-card" hidden>
+            <span class="eyebrow">You're done</span>
+            <h2>Here's what you told us.</h2>
+            <p class="intro">Nothing here has been sent anywhere. It only exists in this browser until you download or share it.</p>
+
+            <div id="summary-content"></div>
+
+            <div class="export-grid">
+                <button type="button" class="btn btn-primary" id="export-pdf">Download as PDF</button>
+                <button type="button" class="btn btn-secondary" id="export-md">Download as Markdown</button>
+                <button type="button" class="btn btn-secondary" id="export-share">Get shareable link</button>
+            </div>
+            <div class="share-box" id="share-box"></div>
+
+            <div class="discover-actions">
+                <button type="button" class="btn-link" id="s4-back">← Back to edit</button>
+                <button type="button" class="btn-link" id="s4-restart">Start over</button>
+            </div>
+
+            <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--color-divider);">
+                <h3 style="font-size:18px;margin:0 0 10px;">What's next?</h3>
+                <p style="font-size:15px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0 0 16px;">This checklist is the first step. The full written workflow walks you through deciding what each of these AI tools should actually be allowed to do, and how to check that it's working.</p>
+                <div style="display:flex;gap:15px;flex-wrap:wrap;">
+                    <a class="btn btn-primary" href="https://github.com/guardrails-tools-ai/guardrails-tools/tree/main/workflow" target="_blank" rel="noopener">Read the full workflow</a>
+                    <a class="btn btn-ghost" href="https://github.com/guardrails-tools-ai/guardrails-tools" target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    </div>
+
+    <footer class="bs-footer">
+        <span>Guardrails Tools — open-source AI governance framework. MIT License.</span>
+        <span><a href="https://github.com/guardrails-tools-ai/guardrails-tools">GitHub</a> &middot; <a href="../why-ai-needs-boundaries.html">Philosophy</a> &middot; <a href="mailto:carthy@simplified-labs.com">Contact</a></span>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="worksheets.js?v=1"></script>
+    <script src="discover.js?v=1"></script>
+</body>
+</html>
