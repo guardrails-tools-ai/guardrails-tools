@@ -16,6 +16,18 @@
 
   function $(id) { return document.getElementById(id); }
 
+  // Fires only allow-listed, content-free events — see docs/metrics.js and
+  // metrics-worker/src/index.js for the full contract. Never throws.
+  function track(event, meta) {
+    if (window.GTrack) window.GTrack(event, meta);
+  }
+
+  function questionAction(answer) {
+    if (!answer.value) return "unanswered";
+    if (answer.value === "unsure") return answer.unsureAction === "ask" ? "ask" : answer.unsureAction === "skip" ? "skip" : "unanswered";
+    return null; // answered normally — nothing to report
+  }
+
   function loadState() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
@@ -418,6 +430,7 @@
     $("s3-next").addEventListener("click", function () {
       state.completedAt = new Date().toISOString();
       saveState();
+      track("inventory_complete", { systemCount: G.allSystems(state).length });
       renderPick();
       showScreen("screen-pick");
     });
@@ -479,11 +492,13 @@
     });
 
     $("export-md").addEventListener("click", function () {
+      track("export", { format: "markdown", scope: "inventory" });
       G.downloadTextFile("ai-discovery-worksheet.md", G.buildFullMarkdown(state), "text/markdown;charset=utf-8");
       toast("Downloaded ai-discovery-worksheet.md");
     });
 
     $("export-pdf").addEventListener("click", function () {
+      track("export", { format: "pdf", scope: "inventory" });
       try {
         var doc = G.buildPdf(state);
         doc.save("ai-discovery-worksheet.pdf");
@@ -497,6 +512,7 @@
     });
 
     $("export-share").addEventListener("click", function () {
+      track("export", { format: "share", scope: "inventory" });
       var encoded = G.encodeShareState(state);
       var url = location.origin + location.pathname + "?share=" + encoded;
       var box = $("share-box");
@@ -589,6 +605,7 @@
           state.walkthrough.system = sys; // keep answers, refresh snapshot in case inventory detail changed
         }
         saveState();
+        track("system_picked", { category: sys.category });
         renderWalkStep("data");
         showScreen("screen-w-data");
       }
@@ -665,6 +682,9 @@
 
     $("w-" + key + "-back").addEventListener("click", function () { showScreen(WALK_STEP_PREV[key]); });
     $("w-" + key + "-next").addEventListener("click", function () {
+      var action = questionAction(state.walkthrough.answers[key]);
+      if (action) track("question_unsure", { question: key, action: action });
+
       var nextKey = WALK_STEP_NEXT[key];
       if (nextKey === "controls") {
         renderWalkControls();
@@ -749,8 +769,23 @@
 
     $("w-controls-back").addEventListener("click", function () { renderWalkStep("risk"); showScreen("screen-w-risk"); });
     $("w-controls-next").addEventListener("click", function () {
-      state.walkthrough.completedAt = new Date().toISOString();
+      var w = state.walkthrough;
+      var c = w.answers.controls;
+      if (c.selected.length === 0) {
+        track("question_unsure", { question: "controls", action: c.unsureAction === "ask" ? "ask" : c.unsureAction === "skip" ? "skip" : "unanswered" });
+      }
+
+      w.completedAt = new Date().toISOString();
       saveState();
+
+      var status = W.overallStatus(w);
+      track("walkthrough_complete", {
+        status: status.code,
+        priority: W.priorityFor(w),
+        pendingCount: W.pendingSteps(w).length,
+        missingControlsCount: W.missingControls(w).length
+      });
+
       renderWalkSummary();
       showScreen("screen-summary");
     });
@@ -775,6 +810,13 @@
     var others = otherDiscoveredSystems();
 
     $("summary-system-name").textContent = w.system.name + " (" + w.system.category + ")";
+
+    // Reset the survey each time a walkthrough is (re-)completed, so
+    // finishing a second system offers it again rather than staying hidden
+    // from a previous submission.
+    $("survey-block").hidden = false;
+    $("survey-thanks").hidden = true;
+    document.querySelectorAll('#survey-block input[type="radio"]:checked').forEach(function (el) { el.checked = false; });
 
     $("summary-status").innerHTML =
       '<span class="status-badge status-' + status.code + '">' + status.icon + " " + status.label + "</span>" +
@@ -804,11 +846,31 @@
   }
 
   function wireScreenSummary() {
+    function hideSurvey() {
+      $("survey-block").hidden = true;
+      $("survey-thanks").hidden = false;
+    }
+
+    $("survey-submit").addEventListener("click", function () {
+      var q1 = document.querySelector('input[name="survey-q1"]:checked');
+      var q2 = document.querySelector('input[name="survey-q2"]:checked');
+      var q3 = document.querySelector('input[name="survey-q3"]:checked');
+      if (!q1 && !q2 && !q3) { hideSurvey(); return; }
+      track("survey_response", {
+        q1: q1 ? q1.value : undefined,
+        q2: q2 ? q2.value : undefined,
+        q3: q3 ? q3.value : undefined
+      });
+      hideSurvey();
+    });
+    $("survey-skip").addEventListener("click", hideSurvey);
+
     $("summary-back").addEventListener("click", function () { renderWalkControls(); showScreen("screen-w-controls"); });
     $("summary-pick-other").addEventListener("click", function () { renderPick(); showScreen("screen-pick"); });
     $("summary-inventory").addEventListener("click", function () { renderInventorySummary(); showScreen("screen-inventory"); });
 
     $("summary-export-pdf").addEventListener("click", function () {
+      track("export", { format: "pdf", scope: "walkthrough" });
       try {
         var doc = W.buildWalkthroughPdf(state.walkthrough, otherDiscoveredSystems());
         doc.save("ai-governance-decision-summary.pdf");
@@ -818,10 +880,12 @@
       }
     });
     $("summary-export-md").addEventListener("click", function () {
+      track("export", { format: "markdown", scope: "walkthrough" });
       G.downloadTextFile("ai-governance-decision-summary.md", W.buildWalkthroughMarkdown(state.walkthrough, otherDiscoveredSystems()), "text/markdown;charset=utf-8");
       toast("Downloaded ai-governance-decision-summary.md");
     });
     $("summary-export-json").addEventListener("click", function () {
+      track("export", { format: "json", scope: "walkthrough" });
       G.downloadTextFile("ai-governance-decision-summary.json", W.buildWalkthroughJSON(state.walkthrough, otherDiscoveredSystems()), "application/json;charset=utf-8");
       toast("Downloaded ai-governance-decision-summary.json");
     });
@@ -846,7 +910,7 @@
   /* ---------------- Intro / resume ---------------- */
 
   function wireIntro() {
-    $("btn-start").addEventListener("click", function () { showScreen("screen-1"); });
+    $("btn-start").addEventListener("click", function () { track("discover_start"); showScreen("screen-1"); });
   }
 
   // Adopts saved progress into the live `state` immediately (before the

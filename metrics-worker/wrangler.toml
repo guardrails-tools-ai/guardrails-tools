@@ -1,0 +1,7 @@
+name = "guardrails-metrics"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+[[kv_namespaces]]
+binding = "EVENTS"
+id = "b82c93463d0d43a8b45b2de2cd2bdece"

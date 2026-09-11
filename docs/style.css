@@ -884,6 +884,25 @@ html {
     padding-left: 20px;
 }
 
+.bs-page .survey-block {
+    margin: 8px 0 24px;
+    padding: 18px 20px 4px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+}
+
+.bs-page .survey-block h3 {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    margin: 0 0 4px;
+}
+
+.bs-page .survey-thanks {
+    margin: -8px 0 24px;
+}
+
 @media (max-width: 768px) {
     .bs-page .nav {
         gap: 12px 16px;

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Out What AI You're Actually Using | Guardrails Tools</title>
-    <meta name="description" content="A free checklist to find out what AI your business is actually using, then a guided walkthrough that helps you make real decisions about the one that concerns you most. No signup, nothing saved anywhere but your own browser.">
+    <meta name="description" content="A free checklist to find out what AI your business is actually using, then a guided walkthrough that helps you make real decisions about the one that concerns you most. No signup. We never see what you type or how you answered — only anonymous usage counts.">
     <meta property="og:title" content="Find Out What AI You're Actually Using">
-    <meta property="og:description" content="A free checklist, then a guided walkthrough for the AI use case that worries you most. No signup. Nothing leaves your browser.">
+    <meta property="og:description" content="A free checklist, then a guided walkthrough for the AI use case that worries you most. No signup. We never see what you type.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://guardrails-tools.dev/discover/">
     <meta name="twitter:card" content="summary">
@@ -55,7 +55,7 @@
 
         <!-- SCREEN 0: intro -->
         <section id="screen-intro" class="discover-card">
-            <span class="eyebrow">Free · Nothing saved anywhere but your browser</span>
+            <span class="eyebrow">Free · We never see what you type or how you answered</span>
             <h2>Let's find out what AI your business is actually using — then walk through the one that worries you most.</h2>
             <p class="intro">
                 First, a quick checklist (about 2-3 minutes): AI tools people use directly (like ChatGPT or Claude), AI features already built into apps you pay for (like Salesforce or Microsoft 365), and any custom systems your team may have built. Most businesses find more than they expected.
@@ -223,6 +223,45 @@
                 <ul class="gap-list" id="summary-evidence"></ul>
             </div>
 
+            <div class="survey-block" id="survey-block">
+                <h3>Quick feedback (30 seconds)</h3>
+                <p class="q-hint" style="margin-left:0;">Optional, anonymous, and helps us improve this. No email, no account.</p>
+
+                <div class="discover-question">
+                    <span class="q-label">Did this surface something about your AI use you hadn't explicitly decided before?</span>
+                    <div class="radio-list">
+                        <label class="radio-item"><input type="radio" name="survey-q1" value="yes"> Yes, I discovered something new</label>
+                        <label class="radio-item"><input type="radio" name="survey-q1" value="no"> No, I already knew this</label>
+                        <label class="radio-item"><input type="radio" name="survey-q1" value="unsure"> Not sure</label>
+                    </div>
+                </div>
+
+                <div class="discover-question">
+                    <span class="q-label">Will you act on any of the control gaps identified?</span>
+                    <div class="radio-list">
+                        <label class="radio-item"><input type="radio" name="survey-q2" value="week"> Yes, within a week</label>
+                        <label class="radio-item"><input type="radio" name="survey-q2" value="month"> Yes, within a month</label>
+                        <label class="radio-item"><input type="radio" name="survey-q2" value="maybe"> Maybe, depends on other priorities</label>
+                        <label class="radio-item"><input type="radio" name="survey-q2" value="no"> No, not right now</label>
+                    </div>
+                </div>
+
+                <div class="discover-question">
+                    <span class="q-label">If you handed this to your IT/Security/Finance lead, would they know what to do?</span>
+                    <div class="radio-list">
+                        <label class="radio-item"><input type="radio" name="survey-q3" value="clear"> Yes, very clear</label>
+                        <label class="radio-item"><input type="radio" name="survey-q3" value="mostly"> Mostly clear</label>
+                        <label class="radio-item"><input type="radio" name="survey-q3" value="unclear"> Unclear, needs explanation</label>
+                    </div>
+                </div>
+
+                <div class="discover-actions" style="border-top:none;padding-top:0;justify-content:flex-start;">
+                    <button type="button" class="btn btn-secondary" id="survey-submit">Submit feedback</button>
+                    <button type="button" class="btn-link" id="survey-skip">Skip</button>
+                </div>
+            </div>
+            <p class="q-hint survey-thanks" id="survey-thanks" hidden>Thanks — that helps.</p>
+
             <div class="export-grid">
                 <button type="button" class="btn btn-primary" id="summary-export-pdf">Download as PDF</button>
                 <button type="button" class="btn btn-secondary" id="summary-export-md">Download as Markdown</button>
@@ -255,7 +294,7 @@
         <section id="screen-inventory" class="discover-card" hidden>
             <span class="eyebrow">Your full inventory</span>
             <h2>Here's everything you told us.</h2>
-            <p class="intro">Nothing here has been sent anywhere. It only exists in this browser until you download or share it.</p>
+            <p class="intro">This list only exists in your browser until you download or share it — we never see what you typed. We do log anonymous, content-free usage counts (like how many people reach this screen) to improve the tool.</p>
 
             <div id="summary-content"></div>
 
@@ -294,8 +333,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="../metrics.js?v=1"></script>
+    <script>if (window.GTrack) GTrack("page_view", { path: "/discover/" });</script>
     <script src="worksheets.js?v=1"></script>
     <script src="walkthrough.js?v=1"></script>
-    <script src="discover.js?v=2"></script>
+    <script src="discover.js?v=3"></script>
 </body>
 </html>
