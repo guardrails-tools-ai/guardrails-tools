@@ -2,6 +2,10 @@
 
 **Time: 10 minutes** · **Goal: Find out where AI is actually operating in your organization**
 
+> **Coming from the [guided assessment](https://guardrails-tools.dev/discover/)?** You already ran its checklist for one or more systems. This section isn't a second data-collection form — it's the conceptual deep-dive on *why* the three categories matter and *how* to be thorough finding all of them, so you can extend the same inventory approach to your whole company. If the checklist already covered what you need, skim this and jump to [02 — Risk Classification](02-risk-classification.md).
+>
+> **Reading this without having used the tool?** The worksheet below works fine on its own, with pen and paper or a spreadsheet.
+
 **Key insight:** AI is in more places than you think — often embedded in software that doesn't look like an "AI tool."
 
 ## You May Already Be Using AI in More Places Than You Think
@@ -153,9 +157,9 @@ Examples:
 - Who built them? Who maintains them?
 - Are they documented anywhere?
 
-## The Worksheet: Where Is AI Operating?
+## Recording What You Find: Where Is AI Operating?
 
-Use this worksheet to inventory your company's actual AI use.
+The [guided assessment](https://guardrails-tools.dev/discover/) does this part interactively, one system at a time, and saves your progress as you go. If you're working from this document instead — covering everything at once rather than one use case — use the tables below as your inventory format.
 
 ### Category 1: Direct AI Tools
 
@@ -185,7 +189,7 @@ Use this worksheet to inventory your company's actual AI use.
 
 ## What You're Looking For
 
-As you fill out this worksheet, you're building three things:
+As you work through discovery — whether interactively in the tool or on paper here — you're building three things:
 
 1. **Visibility** — "We didn't know Finance was using this"
 2. **Scope** — "AI is in more places than we thought"
@@ -252,6 +256,6 @@ Once you've completed this inventory, move to **[02 — Risk Classification](02-
 
 You'll take each AI system from your discovery and ask: "If this goes wrong, how serious is it?"
 
-But first, you need to know what "this" is. So fill out the worksheet. Be thorough. Include things you're not sure about (mark them for follow-up). Then move forward.
+But first, you need to know what "this" is. Be thorough — in the tool or on paper. Include things you're not sure about (mark them for follow-up). Then move forward.
 
 Next: [02 — Risk Classification](02-risk-classification.md)

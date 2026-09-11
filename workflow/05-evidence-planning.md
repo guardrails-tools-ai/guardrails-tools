@@ -2,6 +2,10 @@
 
 **Time: 10 minutes** · **Goal: Decide how you'll prove every control actually works**
 
+> **Coming from the [guided assessment](https://guardrails-tools.dev/discover/)?** The tool hands you a short, generic evidence plan at the end of the walkthrough. This section shows you how to write a specific, testable validation for *each* control you identified in Step 4 — the depth the quick version doesn't have room for.
+>
+> **Reading this offline?** Everything you need is below.
+
 ## Why this matters
 
 A control you can't verify is a claim, not a control. This is the step that separates a policy document that sits in a shared drive from a governance program that survives an audit, an incident review, or a board question. When something eventually goes wrong — and across enough use cases, eventually something will — the question won't be "did we have a policy?" It will be "can you show me the control worked, and if it didn't, can you show me when it stopped?"

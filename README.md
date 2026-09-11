@@ -49,13 +49,21 @@ Risk and authority are scored **independently** — a tool that only reads privi
 
 ## Get started
 
+There are two valid ways in — pick based on your style, not because one is "more correct."
+
+**If you want a decision fast:** use the [guided assessment](https://guardrails-tools.dev/discover/) to walk through one real AI use case — about 20 minutes, no signup, no clone required. You'll get a decision summary, a list of control gaps, and concrete next steps for that one system.
+
+**If you want to learn the framework and apply it to everything:** work through the written workflow below. It covers every AI use case in your company, not just one, and explains the reasoning behind each decision.
+
 1. Clone or download this repo.
-2. Read [`workflow/00-intro.md`](workflow/00-intro.md) (5 min).
-3. Work through Discovery, Risk Classification, Authority Definition, Control Identification, and Evidence Planning (about 50 min). Or start with the free [20-minute interactive assessment](https://guardrails-tools.dev/discover/) instead.
+2. Read [`workflow/00-intro.md`](workflow/00-intro.md) (5 min) — the two ideas everything else depends on.
+3. Work through [Discovery](workflow/01-discovery.md), [Risk Classification](workflow/02-risk-classification.md), [Authority Definition](workflow/03-authority-definition.md), [Control Identification](workflow/04-control-identification.md), and [Evidence Planning](workflow/05-evidence-planning.md) — one at a time, each links to the next (about 50 min total).
 4. Fill in [`templates/policy-template-base.md`](templates/policy-template-base.md) with what you found.
 5. Share it with your team.
 
-You'll come out the other end with four things, built from one consistent record for every AI use case you found:
+Already done the guided assessment and want to go deeper? Start at [`workflow/00-intro.md`](workflow/00-intro.md) — it picks up from there.
+
+Either path, you'll come out the other end with four things, built from one consistent record for every AI use case you found:
 
 1. **AI System & Use Case Register** — every AI system and use case, classified.
 2. **AI Governance Policy** — a plain-language document you can hand to your team or an auditor.

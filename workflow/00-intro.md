@@ -1,6 +1,10 @@
 # Introduction: Know. Control. Prove.
 
-Welcome to the Guardrails workflow — a 50-minute process that takes your company from "we have no idea what our AI governance looks like" to a written baseline policy, a control register, a prioritized gap list, and an evidence plan.
+Welcome to the Guardrails workflow — a 50-minute process that takes your company from "we have no idea what our AI governance looks like" to a written baseline policy, a control register, a prioritized gap list, and an evidence plan, covering every AI use case in your company.
+
+> **Already used the [guided assessment](https://guardrails-tools.dev/discover/)?** You've made these decisions once, for one use case. This workflow explains the reasoning behind them in depth and shows you how to apply the same framework to everything else AI touches at your company.
+>
+> **Starting here instead, without having used the tool?** That's a fine way in too — this introduction covers everything you need before Step 1.
 
 ## Why this exists
 

@@ -1,6 +1,8 @@
 # The Guardrails Workflow
 
-A guided, step-by-step process that takes your company from "no AI governance" to a written baseline policy, a control register, a prioritized gap list, and an evidence plan — in about 50 minutes.
+A guided, step-by-step process that takes your company from "no AI governance" to a written baseline policy, a control register, a prioritized gap list, and an evidence plan — in about 50 minutes, covering every AI use case in your company.
+
+If you want a faster, narrower starting point instead, the [guided assessment](https://guardrails-tools.dev/discover/) walks through the same kind of decisions for one AI use case in about 20 minutes, right in your browser. Both are valid — this written workflow is the deep dive; the guided assessment is the quick one. Plenty of people do the guided assessment first, then come back here to extend it to everything else.
 
 Start here: **[00 — Introduction](00-intro.md)**. It explains the two ideas everything else depends on — the graduated authority ladder (0-6) and why risk and authority are scored independently — before you touch the worksheets.
 

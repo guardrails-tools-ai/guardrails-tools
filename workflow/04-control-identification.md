@@ -2,6 +2,10 @@
 
 **Time: 10 minutes** · **Goal: Turn risk + authority into concrete controls**
 
+> **Coming from the [guided assessment](https://guardrails-tools.dev/discover/)?** This is the tool's "What keeps that risk bounded?" question, in depth — it shows you how to derive specific, testable controls from a risk tier and authority level, not just check off which ones already exist.
+>
+> **Reading this offline?** Everything you need is below.
+
 ## Why this matters
 
 Risk tiers and authority levels are descriptions. Controls are what actually stand between a use case and the bad outcome you identified in Step 2. A use case can be perfectly classified and perfectly authorized on paper and still be ungoverned in practice, if nothing enforces the boundary — a written rule that "the AI may not generate legal advice" does nothing if there's no review step checking whether it did.

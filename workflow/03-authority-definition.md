@@ -2,6 +2,10 @@
 
 **Time: 10 minutes** · **Goal: Decide exactly what each use case is allowed to do**
 
+> **Coming from the [guided assessment](https://guardrails-tools.dev/discover/)?** This is the tool's "What can it do?" question, explored in depth — including how to set conditions, name approvers, and write down what's explicitly prohibited, which the quick version doesn't have room for.
+>
+> **Reading this offline?** Everything you need is below.
+
 ## Why this matters
 
 Most companies never write this down. They have a vague sense that "AI helps with X" and leave the actual boundary of what it's allowed to do undefined — which means the boundary gets set, informally, by whoever is using it under the most pressure. The autonomous ops agent that was only ever supposed to restart a health-checked pod ends up attempting a broader remediation during a live Sev-1, because nobody had written down that it shouldn't. Not because it was told to — because it was never told it *couldn't*.

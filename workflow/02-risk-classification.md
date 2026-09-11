@@ -2,6 +2,10 @@
 
 **Time: 10 minutes** · **Goal: Rate the inherent risk of each use case — independent of what the AI is allowed to do**
 
+> **Coming from the [guided assessment](https://guardrails-tools.dev/discover/)?** This is the same territory as the tool's "What happens if it's wrong?" question, gone into more depth — four separate sub-questions instead of one multiple-choice pick, with worked examples across four risk dimensions.
+>
+> **Reading this offline?** Everything you need is below — no prior tool use required.
+
 ## Why this matters
 
 This is the step people are most tempted to skip or rush, usually by reasoning backwards from authority: "it can't take any action, so it's probably low risk." That reasoning is exactly what this step exists to prevent.
