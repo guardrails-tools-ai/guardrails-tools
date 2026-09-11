@@ -1,3 +1,5 @@
 # Every change to this repo requires review from a code owner before it
 # can merge — see branch protection on `main`. This file names the owner.
+# As the sole collaborator and repo admin, the owner can still merge their
+# own PRs solo (branch protection does not enforce against admins here).
 * @WiWaFoOne
