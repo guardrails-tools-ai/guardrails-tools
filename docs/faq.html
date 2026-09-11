@@ -11,6 +11,209 @@
     <meta property="og:url" content="https://guardrails-tools.dev/faq.html">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Guardrails FAQ">
+    <link rel="canonical" href="https://guardrails-tools.dev/faq.html">
+    <meta name="keywords" content="AI governance FAQ, AI authority levels, AI risk tier, AI compliance framework, responsible AI framework, AI policy questions">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Guardrails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Guardrails is a practical framework that helps companies make deliberate decisions about how AI should be used at work. It answers specific questions: What AI systems are we using? What information can they access? What are they allowed to do? What decisions require a person? What should they never be able to do? How do we prove the controls actually work? The goal is not to stop companies from using AI. The goal is to make sure AI is useful without giving it more authority, access, or responsibility than you intend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Guardrails produce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After the guided assessment (one use case, 20 minutes) or the full written workflow (every use case, 50 minutes), you'll have four things: AI System & Use Case Register An inventory of where AI is being used, what data it touches, who owns it, what risk it creates, and what authority it has. This is your source of truth. AI Governance Policy A plain-language baseline policy your company can use as-is or adapt. It includes approval workflows, control requirements, audit expectations, and incident response procedures. Control Gap Assessment A prioritized list of places where your company currently lacks appropriate controls. Prioritized by risk, so you know what to fix first. Evidence & Validation Plan A way to verify that your controls actually work. For each control, it specifies what gets logged, how often you test, and what success looks like. You walk out of the workflow with something actionable, not just a document you'll never look at again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do companies need this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI tools are spreading through companies much faster than most company policies are changing. Employees are already using ChatGPT, Claude, Copilot, Gemini, and other AI systems for writing, analysis, coding, customer support, hiring, finance, research, and operations. That creates a simple problem: the company may not know where AI is being used, what information it can see, or what decisions and actions it can influence. Guardrails helps make those boundaries explicit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Isn't this just an IT security problem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not entirely. Security is part of it, but AI can create risk without ever touching a server. For example: A recruiter pastes applicant information into a personal ChatGPT account (data sensitivity + compliance risk) A finance employee uploads confidential forecasts for analysis (regulatory risk + insider trading exposure) A salesperson pastes a customer contract into Claude (confidentiality risk) A customer service AI confidently gives a customer the wrong policy (liability risk) An autonomous agent takes an action that technically works but was never supposed to be allowed (operational risk) Those are business, privacy, legal, operational, and security risks. Guardrails addresses the entire AI use case, not just the technology."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between risk tier and authority level?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This distinction is critical. Risk is: what could go wrong and how serious would it be? Authority is: how much decision-making power should the AI have? They're independent dimensions. Example 1: Legal contract analysis using Claude Risk Tier: Critical (involves confidential attorney-client material) Authority Level: 1 (Analyze only — summarize and identify risks) Controls: Strict data boundaries, human review required Example 2: Ops agent restarting unhealthy services Risk Tier: Low (restarts test environments) Authority Level: 4 (Execute reversible actions within limits) Controls: Less restrictive You classify risk and authority separately, then combine them to decide what controls you need."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the authority levels?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Guardrails uses a graduated authority model that works across all domains — legal, finance, operations, hiring, manufacturing, customer service, everything. Level Authority Meaning 0 Observe Access approved information; no derived action 1 Analyze Interpret, classify, summarize, or diagnose 2 Recommend Propose a decision or course of action 3 Prepare Create an artifact/change that cannot take effect without another actor 4 Execute Bounded Perform predefined, reversible actions within explicit constraints 5 Execute Gated Perform higher-impact actions only when required conditions/approvals are satisfied 6 Prohibited Action is unavailable to the AI actor regardless of instruction Examples across the framework: Claude summarizing contracts = Level 1 (Analyze) ChatGPT recommending suppliers = Level 2 (Recommend) GitHub Copilot creating a PR for review = Level 3 (Prepare) Ops agent restarting a pod if health check fails = Level 4 (Execute Bounded) Deployment agent deploying after human approval = Level 5 (Execute Gated) AI disabling audit logging = Level 6 (Prohibited — never) The right level depends on what could go wrong if the AI makes a mistake."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's a \"use case\"?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A use case is: \"This AI system, doing this specific job, with this specific data, for this specific purpose.\" The same AI system can have multiple use cases with different risk profiles. Example: Claude Enterprise used by your company for: Contract analysis (Legal department, confidential data, Level 1 authority) Financial forecasting (Finance department, confidential data, Level 2 authority) Code review (Engineering, proprietary code, Level 2 authority) Customer research (Marketing, public data, Level 1 authority) Each use case gets its own risk classification, authority level, and controls. Don't try to govern \"Claude\" as one thing. Govern what Claude does."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Isn't this just an instruction to the AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instructions are useful, but they're not enough for important controls. There's a difference between: Approach 1: Instruction-based You tell the AI: \"Never delete the production database.\" The AI is supposed to enforce the boundary. But the AI might misunderstand, be manipulated, or make a mistake. And your database is gone. Approach 2: System-enforced The system is designed so the AI literally doesn't have permission to delete the production database. The AI can be wrong about the solution. The AI can be compromised. The AI can be manipulated. And the boundary still holds. For lower-risk situations (summarizing public documents), instructions might be sufficient. For higher-risk situations (production infrastructure, confidential data, important decisions), the boundary needs to exist outside the AI as technical enforcement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Guardrails mean AI should never take actions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Guardrails uses graduated authority, not binary restrictions. Some AI should only read. Others should analyze or recommend. Others should prepare work for approval. And some should safely perform limited actions on their own. The right authority depends on the risk. An ops agent restarting a test environment can safely execute on its own. A deployment system modifying production should require approval. An AI system that could disable audit logging should never be allowed to do it. You decide the appropriate level for each use case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does this matter if AI has safety training?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because training alone can't enforce organizational boundaries. An AI system might have billions of parameters trained to be helpful and honest, but that doesn't mean it automatically understands that: Your production database is different from a test database Your financial forecast is material non-public information Your employee records are confidential This decision requires CFO approval This data belongs to a regulated customer This system is safety-critical These aren't training constraints. They're organizational constraints. They have to exist in the system, not just in the model. (See Why AI Needs Boundaries for more on this, in the model's own words.)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Isn't this only for large enterprises?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Large enterprises may have dedicated security, compliance, legal, and governance teams. Smaller companies often don't. Guardrails is intended to make governance understandable and actionable without requiring someone to become an AI governance expert. A five-person company and a 5,000-person company will implement controls differently. But both need to answer the same questions: What can our AI see? What can it do? What are the boundaries? Can we prove those boundaries work?"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Guardrails replace NIST, ISO, OWASP, or other standards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Those frameworks provide important guidance about responsible AI, security, and risk management. Guardrails is the implementation layer beneath them. Standards tell you what good governance should accomplish. Guardrails helps you decide what that means inside your own company. NIST might say: \"Organizations should implement controls appropriate to risk.\" Guardrails helps you answer: \"For our legal use case with our Claude instance, what does that look like?\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Isn't this about distrusting AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Actually, it's the opposite. This framework works because AI is more reliable when boundaries are clear. When an AI system knows exactly what it's allowed to do, it can focus on doing it well instead of guessing at unstated constraints. When actions are logged, you can verify the system did what it was supposed to do. When authority is limited to what the system should actually control, it can't accidentally break something important. These aren't restrictions that make an AI system less useful. They're boundaries that make it trustworthy. They make everyone — including the AI — work better."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Isn't this only for companies using ChatGPT or Claude?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Guardrails works for any AI system: Large language models (ChatGPT, Claude, Gemini, etc.) Code assistants (GitHub Copilot, etc.) Autonomous agents RAG systems and custom applications Internal or proprietary AI tools Custom ML models The framework is tool-agnostic. The questions are the same regardless of what AI you're using: What can this system see? What can it do? What requires approval? What can it never do? How do we verify this works?"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the Guardrails workflow take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There are two ways in, and you can start with either one. The interactive discovery assessment takes about 20 minutes: a quick checklist of what AI you're using, then a guided walkthrough for the one use case that worries you most. No signup, works on your phone. The full written workflow is designed to take about 50 minutes, and covers every use case in more depth. That includes: Discovering your AI systems and use cases Classifying risk for each Defining authority levels Identifying what controls you need Planning how you'll verify the controls work At the end, you have a filled-in register, a baseline policy, a control gap assessment, and an evidence plan. Is that realistic for a large organization? Maybe not a full governance review, but a solid baseline that you then layer deeper controls onto. Is it realistic for a small organization? Yes. It's designed for companies that don't have dedicated governance staff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Guardrails track or store what I enter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no signup and no account. What you type or select in the discovery assessment — your AI tools, your answers, your notes — stays in your own browser. It only ever leaves if you choose to download a worksheet, export a summary, or generate a share link. We do collect anonymous usage analytics, and we'd rather tell you exactly what that means than leave it vague: Which steps people reach and complete (started the checklist, finished the inventory, picked a system, finished the walkthrough) What category of system was picked — \"a direct AI tool\" or \"an internal system,\" never the name you typed Whether a question was answered or left \"I'm not sure,\" and whether you chose to ask someone, skip it, or come back — never which specific answer you gave The computed status and priority of a finished walkthrough (like \"incomplete, high priority\") — not the underlying answers that produced it Which export format you used (PDF, Markdown, or JSON) Your answers to the optional 3-question feedback survey, if you submit it What we never collect: free text, the specific option you picked on any question, system names, your name, or your email address. There's nothing to opt out of because there's nothing personal being sent in the first place. Each visit gets a random, temporary session code so we can count how many people get through each step, rather than counting the same person's reloads as new visitors. It lives only in your browser's session storage — not a cookie — and disappears when you close the tab. It's never linked to you across visits or devices. Why collect anything at all? So we know whether the walkthrough actually works — whether people finish it, where they get stuck, whether the \"I'm not sure\" prompts help — instead of guessing. This is Phase 1; we're using it to decide what to fix before building more. Since Guardrails is open source, you don't have to take our word for any of this — the collection code is public: metrics-worker/src/index.js. It rejects anything outside a fixed, published list of event types and fields."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if we already have an AI governance policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Guardrails can complement existing policy. If you already have governance: You might use Guardrails to stress-test your policy (run through the workflow and see if your answers match) You might use it to find gaps (the control gap assessment) You might use the register template to inventory systems you haven't formally governed yet If you don't have governance: Guardrails gives you a starting point. Either way, Guardrails produces outputs — a register, a policy, gaps, and a validation plan — that are useful even if you already have some governance in place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens after the workflow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Phase 1 ends with a baseline policy and a control gap assessment. Phase 2 (not included yet) would involve: Implementing the controls you've identified Integrating with your actual infrastructure (IAM, vaults, approval workflows, logging) Testing that the controls work Keeping the policy and controls up to date as systems change Guardrails Phase 1 gives you the map. You use your own tools and teams to execute the implementation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Guardrails be customized for our industry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The framework is generic, but the examples, policies, and controls should reflect your specific context. If you're in healthcare, you'll have different regulations than finance. If you're in critical infrastructure, you'll have different safety constraints than a SaaS company. The four Phase 1 outputs — register, policy, gaps, evidence plan — should all be tailored to your context and your risk profile. Guardrails Phase 1 produces a template you customize. It doesn't produce a one-size-fits-all policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does \"evidence\" mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evidence is how a company proves what happened. For an important AI action, evidence typically includes: Who made the request (user identity) Which AI system was involved What action was requested Which policy rule applied Whether approval was required Who approved it (if approval was needed) What the system actually did Whether the action succeeded or was blocked Timestamp and other audit details That matters during audits, investigations, incidents, and troubleshooting. It also matters for proving to yourself that your controls actually work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who uses Guardrails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anyone responsible for AI governance at a company — including companies where nobody officially holds that title yet: Business owners and leaders at companies with no dedicated security, IT, or compliance person CTOs and VPs of Engineering Security and compliance leaders Risk officers Team leads deploying AI Anyone asking: \"How much authority should this AI have?\" You don't need to be a GRC expert, and you don't need a dedicated team. You need to care about whether your company is using AI safely and intentionally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Guardrails different from other AI governance frameworks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most AI governance frameworks focus on: Policy documentation Compliance mapping Architectural design Guardrails focuses on: Accessibility — understandable without a compliance team Actionability — four usable outputs, not abstract principles Specificity — use-case-specific decisions, not one-size-fits-all Gradualism — authority levels, not binary restrictions Verifiability — evidence and validation, not hope It's not meant to replace enterprise frameworks. It's meant to help companies that don't have those frameworks yet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Guardrails is published on GitHub under an MIT license. You can use it for free, modify it, and contribute back to the community. The project is open to contributions, and feedback is welcome. github.com/guardrails-tools-ai/guardrails-tools"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with the interactive discovery assessment — about 20 minutes, no signup, works on your phone. It walks you through a checklist of what AI you're using, then a guided decision for the one use case that worries you most. When you're ready to go deeper, work through the full written workflow on GitHub. It takes about 50 minutes and produces: AI System & Use Case Register AI Governance Policy Control Gap Assessment Evidence & Validation Plan Then you can implement the controls using your own infrastructure and tools."
+      }
+    }
+  ]
+}
+</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
